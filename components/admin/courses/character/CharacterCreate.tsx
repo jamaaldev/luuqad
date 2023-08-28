@@ -1,33 +1,28 @@
 "use client"
 import baseUrl from "@/utils/baseUrl"
-import { alphaBetValidSchema } from "@/validations/AlphabetIsValid"
+import {
+  CharacterSchemaValid,
+  CharacterTypeValid,
+} from "@/validations/CharacterValid"
 import { Field, Form, Formik, FormikHelpers } from "formik"
 import Link from "next/link"
 
 type Props = {}
-type MyFormValues = {
-  Title: string
-  SubTitle: string
-  Langauge: string
-  Translate: string
-  Direction: string
-}
 
 const CharacterCreate = (props: Props) => {
-  const initialValues: MyFormValues = {
-    Title: "",
-    SubTitle: "",
-    Langauge: "",
-    Translate: "",
-    Direction: "",
+  const initialValues: CharacterTypeValid = {
+    Character: "",
+    Transliteration: "",
+    TsAUrl: "",
+    Direction_fk: "",
   }
 
   const onSubmit = async (
-    values: MyFormValues,
-    action: FormikHelpers<MyFormValues>,
+    values: CharacterTypeValid,
+    action: FormikHelpers<CharacterTypeValid>,
   ) => {
     // action.resetForm()
-    const isValid = await alphaBetValidSchema.isValid(values)
+    const isValid = await CharacterSchemaValid.isValid(values)
     if (isValid === true) {
       try {
         const rest = await fetch(`${baseUrl}/api/courses`, {
@@ -69,7 +64,7 @@ const CharacterCreate = (props: Props) => {
         </div>
         <Formik
           initialValues={initialValues}
-          validationSchema={alphaBetValidSchema}
+          validationSchema={CharacterSchemaValid}
           onSubmit={onSubmit}>
           <Form>
             <div className='flex flex-col items-center justify-center gap-3 mt-8'></div>
@@ -77,47 +72,59 @@ const CharacterCreate = (props: Props) => {
               <div className='mt-5 relative'>
                 <Field
                   type='input'
-                  name='Title'
+                  name='Character'
                   autoComplete='none'
                   required
                   className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='Title  Ex: English'></Field>
+                  placeholder='Title  Ex: A'></Field>
               </div>
               <div className='mt-5 relative'>
                 <Field
                   type='input'
-                  name='SubTitle'
+                  name='Transliteration'
                   autoComplete='none'
                   required
                   className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='SubTitle  Ex: Let’s learn English!'></Field>
+                  placeholder='Transliteration  Ex: EEY'></Field>
               </div>
               <div className='mt-5 relative'>
                 <Field
                   type='input'
-                  name='Langauge'
+                  name='TsAUrl'
                   autoComplete='none'
                   required
                   className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='Langauge  Ex: English'></Field>
+                  placeholder='Transliteration Url  Ex: Audio Link'></Field>
               </div>
               <div className='mt-5 relative'>
+                <label htmlFor='Direction'>
+                  Ex: ( En_So ) Language --{">"} English Transliteration --{">"}{" "}
+                  Somali.
+                </label>
                 <Field
-                  type='input'
-                  name='Translate'
-                  autoComplete='none'
-                  required
-                  className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='Translate  Ex: Somali'></Field>
-              </div>
-              <div className='mt-5 relative'>
-                <Field
-                  type='input'
+                  component='select'
                   name='Direction'
+                  id='Direction'
                   autoComplete='none'
                   required
-                  className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='Ex: ( En_So )  Language --> English  Translate --> Somali'></Field>
+                  className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
+                  placeholder='State  Ex: Somali'>
+                  <option value=''>Please Select Direction</option>
+                  <option value='SF'>En_So</option>
+                  <option value='CH'>So_En</option>
+                </Field>
+              </div>
+              <div className='mt-5 relative'>
+                <Field
+                  component='select'
+                  name='state'
+                  autoComplete='none'
+                  required
+                  className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'>
+                  <option value=''>Please Select state</option>
+                  <option value='SF'>Available</option>
+                  <option value='CH'>Not Avaliable</option>
+                </Field>
               </div>
             </div>
             <div className='flex flex-col items-center justify-center w-full mt-4 space-y-4 text-center'>
