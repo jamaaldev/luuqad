@@ -163,27 +163,27 @@ model UserSection {
 
 model AlphaBets {
   id Int @id @unique @default(autoincrement())
-  title String
-  subtitle String
-  langauge String
-  translate String
-  direction String @unique
-  character Characters[]
-  courses Courses[]
+  Title String
+  SubTitle String
+  Langauge String
+  Translate String
+  Direction String @unique
+  Character Characters[]
+  Courses Courses[]
 }
 
 model Characters {
 id Int  @id @default(autoincrement())
-character String
-transliteration String
-tsaurl String
-strengthprogress Float @default(0.0)
-state String
-direction_fk String
+Character String
+Transliteration String
+TsAUrl String
+StrengthProgress Float @default(0.0)
+State String
+Direction_fk String
 
-alphabets AlphaBets @relation(fields: [direction_fk],references: [direction])
+Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 
-@@index([direction_fk])
+@@index([Direction_fk])
 
 }
 
@@ -191,9 +191,9 @@ model Courses {
   id Int @unique @default( autoincrement())
   user_id Int
 
-   direction_fk String
+  Direction_fk String
 
-  alphabets AlphaBets @relation(fields: [direction_fk],references: [direction])
+  Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 
-  @@index([direction_fk])
+  @@index([Direction_fk])
 }
