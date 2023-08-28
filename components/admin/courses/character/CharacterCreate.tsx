@@ -10,10 +10,12 @@ import Link from "next/link"
 type Props = {}
 
 const CharacterCreate = (props: Props) => {
+  console.log("am okey")
   const initialValues: CharacterTypeValid = {
     Character: "",
     Transliteration: "",
     TsAUrl: "",
+    State: "",
     Direction_fk: "",
   }
 
@@ -22,10 +24,11 @@ const CharacterCreate = (props: Props) => {
     action: FormikHelpers<CharacterTypeValid>,
   ) => {
     // action.resetForm()
+    console.log("characterCreate ", values)
     const isValid = await CharacterSchemaValid.isValid(values)
     if (isValid === true) {
       try {
-        const rest = await fetch(`${baseUrl}/api/courses`, {
+        const rest = await fetch(`${baseUrl}/api/courses/characters/create`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -97,33 +100,33 @@ const CharacterCreate = (props: Props) => {
                   placeholder='Transliteration Url  Ex: Audio Link'></Field>
               </div>
               <div className='mt-5 relative'>
-                <label htmlFor='Direction'>
+                <label htmlFor='Direction_fk'>
                   Ex: ( En_So ) Language --{">"} English Transliteration --{">"}{" "}
                   Somali.
                 </label>
                 <Field
                   component='select'
-                  name='Direction'
-                  id='Direction'
+                  name='Direction_fk'
+                  id='Direction_fk'
                   autoComplete='none'
                   required
                   className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
-                  placeholder='State  Ex: Somali'>
-                  <option value=''>Please Select Direction</option>
-                  <option value='SF'>En_So</option>
-                  <option value='CH'>So_En</option>
+                  placeholder='Please Select Direction_fk'>
+                  <option value=''>Please Select Direction_fk</option>
+                  <option value='En_So'>En_So</option>
+                  <option value='So_En'>So_En</option>
                 </Field>
               </div>
               <div className='mt-5 relative'>
                 <Field
                   component='select'
-                  name='state'
+                  name='State'
                   autoComplete='none'
                   required
                   className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'>
                   <option value=''>Please Select state</option>
-                  <option value='SF'>Available</option>
-                  <option value='CH'>Not Avaliable</option>
+                  <option value='Available'>Available</option>
+                  <option value='Not Avaliable'>Not Avaliable</option>
                 </Field>
               </div>
             </div>

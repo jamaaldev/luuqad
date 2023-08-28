@@ -1,6 +1,6 @@
 import * as yup from "yup"
 
-export const alphaBetValidSchema = yup.object({
+export const AlphaBetSchemaValid = yup.object({
   Title: yup.string().min(5).max(15).required(),
   SubTitle: yup.string().required(),
   Langauge: yup.string().required(),
@@ -8,7 +8,7 @@ export const alphaBetValidSchema = yup.object({
   Direction: yup.string().required(),
 })
 
-export interface CreateMyFormValues
-  extends yup.InferType<typeof alphaBetValidSchema> {
+export interface AlphaBetTypeValid
+  extends yup.InferType<typeof AlphaBetSchemaValid> {
   // using interface instead of type generally gives nicer editor feedback
 }

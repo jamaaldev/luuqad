@@ -1,20 +1,16 @@
 "use client"
 import baseUrl from "@/utils/baseUrl"
-import { alphaBetValidSchema } from "@/validations/AlphabetIsValid"
+import {
+  AlphaBetSchemaValid,
+  AlphaBetTypeValid,
+} from "@/validations/AlphabetIsValid"
 import { Field, Form, Formik, FormikHelpers } from "formik"
 import Link from "next/link"
 
 type Props = {}
-type MyFormValues = {
-  Title: string
-  SubTitle: string
-  Langauge: string
-  Translate: string
-  Direction: string
-}
 
 const AlphabetCreate = (props: Props) => {
-  const initialValues: MyFormValues = {
+  const initialValues: AlphaBetTypeValid = {
     Title: "",
     SubTitle: "",
     Langauge: "",
@@ -23,14 +19,14 @@ const AlphabetCreate = (props: Props) => {
   }
 
   const onSubmit = async (
-    values: MyFormValues,
-    action: FormikHelpers<MyFormValues>,
+    values: AlphaBetTypeValid,
+    action: FormikHelpers<AlphaBetTypeValid>,
   ) => {
     // action.resetForm()
-    const isValid = await alphaBetValidSchema.isValid(values)
+    const isValid = await AlphaBetSchemaValid.isValid(values)
     if (isValid === true) {
       try {
-        const rest = await fetch(`${baseUrl}/api/courses`, {
+        const rest = await fetch(`${baseUrl}/api/courses/alphabets/create`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -69,7 +65,7 @@ const AlphabetCreate = (props: Props) => {
         </div>
         <Formik
           initialValues={initialValues}
-          validationSchema={alphaBetValidSchema}
+          validationSchema={AlphaBetSchemaValid}
           onSubmit={onSubmit}>
           <Form>
             <div className='flex flex-col items-center justify-center gap-3 mt-8'></div>

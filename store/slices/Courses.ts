@@ -1,5 +1,6 @@
 import BASE_URL from "@/utils/baseUrl"
-import { CreateMyFormValues } from "@/validations/AlphabetIsValid"
+import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
+import { CharacterTypeValid } from "@/validations/CharacterValid"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
 
@@ -17,20 +18,38 @@ export const Courses = createApi({
     }
   },
   endpoints: (builder) => ({
-    postCourses: builder.mutation<CreateMyFormValues[], number>({
+    postAlphaBets: builder.mutation<AlphaBetTypeValid[], number>({
       query: (data) => ({
-        url: `/api/courses`,
+        url: `/api/courses/alphabets/create`,
         method: "POST",
         body: data,
       }),
     }),
-    getCourses: builder.query<CreateMyFormValues[], string>({
-      query: (courses_id) => ({
-        url: `/api/courses/${courses_id}`,
+    getAlphaBets: builder.query<AlphaBetTypeValid[], string>({
+      query: (alphabet_id) => ({
+        url: `/api/courses/alphabets/getall${alphabet_id}`,
+        method: "GET",
+      }),
+    }),
+    postCharacters: builder.mutation<CharacterTypeValid[], number>({
+      query: (data) => ({
+        url: `/api/courses/characters/create`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getCharacters: builder.query<CharacterTypeValid[], string>({
+      query: (character_id) => ({
+        url: `/api/courses/characters/getall${character_id}`,
         method: "GET",
       }),
     }),
   }),
 })
 
-export const { useGetCoursesQuery, usePostCoursesMutation } = Courses
+export const {
+  useGetAlphaBetsQuery,
+  usePostAlphaBetsMutation,
+  useGetCharactersQuery,
+  usePostCharactersMutation,
+} = Courses
