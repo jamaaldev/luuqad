@@ -1,8 +1,7 @@
 "use client"
-import React from "react"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { signOut } from "next-auth/react"
 
 interface Props {
   callbackUrl: string
@@ -135,6 +134,26 @@ const SideBar = ({ callbackUrl }: Props) => {
               <circle cx='12' cy='8.5' r='3.5' />
             </svg>
             <span className='pt-2 pl-3 c-xl:hidden'>USERS</span>
+          </li>
+        </Link>
+        <Link href='/admin/courses'>
+          <li
+            className={`flex flex-row items-center w-full px-4 py-3 pb-4 text-base font-bold tracking-widest ${
+              isCurrentRoute("/admin/courses")
+                ? "text-blue-400 bg-blue-100 border-2 border-blue-200 rounded-lg"
+                : "text-green-500 hover:bg-green-100 hover:text-green-600 rounded-lg"
+            } cursor-pointer`}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              id='Bold'
+              viewBox='0 0 24 24'
+              width='26'
+              height='26'
+              fill='rgb(34 197 94)'>
+              <path d='M18.5,0H5.5A5.506,5.506,0,0,0,0,5.5v13A5.506,5.506,0,0,0,5.5,24h13A5.506,5.506,0,0,0,24,18.5V5.5A5.506,5.506,0,0,0,18.5,0ZM21,18.5A2.5,2.5,0,0,1,18.5,21H18V20A6,6,0,0,0,6,20v1H5.5A2.5,2.5,0,0,1,3,18.5V5.5A2.5,2.5,0,0,1,5.5,3h13A2.5,2.5,0,0,1,21,5.5Z' />
+              <circle cx='12' cy='8.5' r='3.5' />
+            </svg>
+            <span className='pt-2 pl-3 c-xl:hidden'>COURSES</span>
           </li>
         </Link>
         <li

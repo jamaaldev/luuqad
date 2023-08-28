@@ -21,10 +21,12 @@ model User {
   location       String?    // Optional fields
   created_at     DateTime   @default(now())
   updated_at     DateTime   @updatedAt
+ 
 
   UserSection    UserSection[]
   Point        Point[]
   Result         Result[]
+
 }
 
 // Role enum with @@map attribute
@@ -159,3 +161,39 @@ model UserSection {
   @@index([section_id])
 }
 
+model AlphaBets {
+  id Int @id @unique @default(autoincrement())
+  title String
+  subtitle String
+  langauge String
+  translate String
+  direction String @unique
+  character Characters[]
+  courses Courses[]
+}
+
+model Characters {
+id Int  @id @default(autoincrement())
+character String
+transliteration String
+tsaurl String
+strengthprogress Float @default(0.0)
+state String
+direction_fk String
+
+alphabets AlphaBets @relation(fields: [direction_fk],references: [direction])
+
+@@index([direction_fk])
+
+}
+
+model Courses {
+  id Int @unique @default( autoincrement())
+  user_id Int
+
+   direction_fk String
+
+  alphabets AlphaBets @relation(fields: [direction_fk],references: [direction])
+
+  @@index([direction_fk])
+}
