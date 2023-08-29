@@ -16,5 +16,7 @@ export async function GET() {
     })
 
     return NextResponse.json(charactersGetAll)
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }

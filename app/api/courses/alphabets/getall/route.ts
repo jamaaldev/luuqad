@@ -15,5 +15,7 @@ export async function GET() {
     })
 
     return NextResponse.json(alphabetsGetAllDirection)
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }
