@@ -12,4 +12,5 @@ export interface CharacterTypeValid
   extends yup.InferType<typeof CharacterSchemaValid> {
   // using interface instead of type generally gives nicer editor feedback
   StrengthProgress?: number
+  id?: number
 }

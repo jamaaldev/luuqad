@@ -39,8 +39,8 @@ export const Courses = createApi({
       }),
     }),
     getCharacters: builder.query<CharacterTypeValid[], string>({
-      query: (character_id) => ({
-        url: `/api/courses/characters/getall${character_id}`,
+      query: (getall) => ({
+        url: `/api/courses/characters/${getall}`,
         method: "GET",
       }),
     }),
