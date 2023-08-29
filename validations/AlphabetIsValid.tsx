@@ -11,4 +11,5 @@ export const AlphaBetSchemaValid = yup.object({
 export interface AlphaBetTypeValid
   extends yup.InferType<typeof AlphaBetSchemaValid> {
   // using interface instead of type generally gives nicer editor feedback
+  id?: number
 }

@@ -1,10 +1,12 @@
 "use client"
 
+import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
 import Link from "next/link"
 
 type Props = {}
 
 const AlphabetList = (props: Props) => {
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
   return (
     <div>
       <div className='flex flex-col'>
@@ -49,54 +51,70 @@ const AlphabetList = (props: Props) => {
                       className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                       Direction
                     </th>
+                    <th
+                      scope='col'
+                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody className='bg-white divide-y divide-gray-200'>
-                  {/* map start */}
-                  <tr key={""}>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      <div className='flex items-center'>
-                        <div className='ml-4'>
-                          <div className='text-sm font-medium text-gray-900'>
-                            {/* {title} */}
+                  {alphabetsGetAllDirection?.map((alphabets) => (
+                    <tr key={alphabets.id}>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='flex items-center'>
+                          <div className='ml-4'>
+                            <div className='text-sm font-medium text-gray-900'>
+                              {alphabets.id}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      <div className='text-sm text-gray-900'>{""}</div>
-                    </td>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      <div className='text-sm text-gray-900'>{""}</div>
-                    </td>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      <span
-                        className='px-2 inline-flex text-xs leading-5
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm text-gray-900'>
+                          {alphabets.Title}
+                        </div>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm text-gray-900'>
+                          {alphabets.SubTitle}
+                        </div>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <span
+                          className='px-2 inline-flex text-xs leading-5
                       font-semibold rounded-full bg-green-100 text-green-800'>
-                        {""}
-                      </span>
-                    </td>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      <span
-                        className='px-2 inline-flex text-xs leading-5
+                          {alphabets.Langauge}
+                        </span>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <span
+                          className='px-2 inline-flex text-xs leading-5
                       font-semibold rounded-full bg-green-100 text-green-800'>
-                        {""}
-                      </span>
-                    </td>
+                          {alphabets.Translate}
+                        </span>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <span
+                          className='px-2 inline-flex text-xs leading-5
+                      font-semibold rounded-full bg-green-100 text-green-800'>
+                          {alphabets.Direction}
+                        </span>
+                      </td>
 
-                    <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                      {/* <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                      <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
+                        {/* <a href="#" className="text-indigo-600 hover:text-indigo-900">
                         Edit
                       </a> */}
-                      <button
-                        onClick={() => alert("ababiina")}
-                        className='text-red-600 hover:text-red-900'>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                  {/* map end */}
+                        <button
+                          onClick={() => alert("ababiina")}
+                          className='text-red-600 hover:text-red-900'>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

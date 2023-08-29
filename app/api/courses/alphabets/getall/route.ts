@@ -5,6 +5,11 @@ export async function GET() {
   try {
     const alphabetsGetAllDirection = await prisma.alphaBets.findMany({
       select: {
+        id: true,
+        Title: true,
+        SubTitle: true,
+        Langauge: true,
+        Translate: true,
         Direction: true,
       },
     })
