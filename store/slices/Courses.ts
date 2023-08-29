@@ -26,8 +26,8 @@ export const Courses = createApi({
       }),
     }),
     getAlphaBets: builder.query<AlphaBetTypeValid[], string>({
-      query: (alphabet_id) => ({
-        url: `/api/courses/alphabets/getall${alphabet_id}`,
+      query: (getall) => ({
+        url: `/api/courses/alphabets/${getall}`,
         method: "GET",
       }),
     }),

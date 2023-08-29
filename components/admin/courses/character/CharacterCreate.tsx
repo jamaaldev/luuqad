@@ -1,4 +1,5 @@
 "use client"
+import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
 import baseUrl from "@/utils/baseUrl"
 import {
   CharacterSchemaValid,
@@ -10,7 +11,8 @@ import Link from "next/link"
 type Props = {}
 
 const CharacterCreate = (props: Props) => {
-  console.log("am okey")
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
+
   const initialValues: CharacterTypeValid = {
     Character: "",
     Transliteration: "",
@@ -113,8 +115,14 @@ const CharacterCreate = (props: Props) => {
                   className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
                   placeholder='Please Select Direction_fk'>
                   <option value=''>Please Select Direction_fk</option>
-                  <option value='En_So'>En_So</option>
-                  <option value='So_En'>So_En</option>
+
+                  {alphabetsGetAllDirection?.map((data, index) => (
+                    <option key={index} value={data.Direction}>
+                      {data.Direction}
+                    </option>
+                  ))}
+
+                  {/* <option value='So_En'>So_En</option> */}
                 </Field>
               </div>
               <div className='mt-5 relative'>
