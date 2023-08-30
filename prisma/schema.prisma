@@ -191,7 +191,7 @@ model Courses {
   id Int @unique @default( autoincrement())
   user_id Int
 
-  Direction_fk String
+  Direction_fk String @unique
 
   Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 

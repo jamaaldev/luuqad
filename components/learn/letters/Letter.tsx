@@ -1,6 +1,6 @@
 type Props = {}
 
-const Character = (props: Props) => {
+const Letter = (props: Props) => {
   // Example data from database which text has not uppercase default all text is uppercase
   // this is for if some text need to be lowercase by dymanic
   const NotUpperCase = "normal-case"
@@ -43,4 +43,4 @@ const Character = (props: Props) => {
   )
 }
 
-export default Character
+export default Letter
