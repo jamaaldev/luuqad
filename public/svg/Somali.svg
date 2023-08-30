@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64"><path fill="#4189dd" d="M64 43c0 6.075-3.373 11-10 11H10C3.373 54 0 49.075 0 43V21c0-6.075 3.373-11 10-11h44c6.627 0 10 4.925 10 11v22"/><path fill="#e6e7e8" d="M44.939 27.04L35 27.06L31.916 17l-3.062 10.06l-9.946-.02l8.06 6.12l-3.122 9.99l8.09-6.204l8.09 6.204l-3.127-9.99z"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="4 2182 74 58" width="74" height="58" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <pattern id="pattern-0-0" patternTransform="matrix(1, 0, 0, 1, 22.499997, 14.499998)" xlink:href="#pattern-0"/>
+    <pattern x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse" viewBox="0 0 100 100" id="pattern-0">
+      <rect x="0" y="0" width="50" height="100" style="fill: rgb(0, 255, 43);"/>
+      <rect x="49.886" y="0.001" width="50" height="100" style="fill: rgb(27, 228, 255);"/>
+    </pattern>
+  </defs>
+  <svg x="0" y="2178" width="82px" height="66px" viewBox="0 0 82 66" version="1.1" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 1.1102230246251565e-16, 2178)">
+    <title>ar</title>
+    <g id="ar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="Group" transform="translate(6.000000, 6.000000)" fill="#7AC70C" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="4">
+        <path d="M 55.723 0.594 L 14.277 0.594 C 9.72 0.594 8.093 1.126 6.433 2.001 C 4.632 2.951 3.218 4.345 2.254 6.121 C 1.367 7.757 0.827 9.361 0.827 13.854 L 0.827 40.146 C 0.827 44.639 1.367 46.243 2.254 47.879 C 3.218 49.655 4.632 51.049 6.433 51.999 C 8.093 52.874 9.72 53.406 14.277 53.406 L 55.723 53.406 C 60.281 53.406 61.908 52.874 63.567 51.999 C 65.369 51.049 66.783 49.655 67.746 47.879 C 68.633 46.243 69.173 44.639 69.173 40.146 L 69.173 13.854 C 69.173 9.361 68.633 7.757 67.746 6.121 C 66.783 4.345 65.369 2.951 63.567 2.001 C 61.908 1.126 60.281 0.594 55.723 0.594 Z" id="Rectangle-3" style="fill: url('#pattern-0-0');"/>
+      </g>
+    </g>
+  </svg>
+</svg>

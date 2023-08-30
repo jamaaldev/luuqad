@@ -1,4 +1,6 @@
+import { usePostLessonsMutation } from "@/store/slices/Courses"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
+import { useSession } from "next-auth/react"
 import Image from "next/image"
 
 type Props = {
@@ -6,8 +8,23 @@ type Props = {
 }
 
 const CoursesCard = (props: Props) => {
+  const { data: session, status } = useSession()
+  const [addLesson] = usePostLessonsMutation()
   const handleClick = (direction: React.SyntheticEvent<HTMLElement>) => {
     console.log("yes click", direction.currentTarget.dataset.direction)
+    console.log(
+      "🚀 ~ file: CoursesCard.tsx:15 ~ handleClick ~ session:",
+      session,
+    )
+
+    addLesson({
+      Direction_fk: direction.currentTarget.dataset.direction,
+      user_id: session?.user?.id,
+    })
+      .then((data) => {
+        console.log("add lesson success", data)
+      })
+      .catch((error) => console.log("addlesson error", error))
   }
   return (
     <div

@@ -1,6 +1,7 @@
 import BASE_URL from "@/utils/baseUrl"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { CharacterTypeValid } from "@/validations/CharacterValid"
+import { CoursesTypeValid } from "@/validations/CoursesIsValid"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
 
@@ -44,6 +45,19 @@ export const Courses = createApi({
         method: "GET",
       }),
     }),
+    postLessons: builder.mutation<CoursesTypeValid[], {}>({
+      query: (data) => ({
+        url: `/api/courses/lessons/enroll`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getLessons: builder.query<CoursesTypeValid[], string>({
+      query: (getall) => ({
+        url: `/api/courses/lessons/${getall}`,
+        method: "GET",
+      }),
+    }),
   }),
 })
 
@@ -52,4 +66,6 @@ export const {
   usePostAlphaBetsMutation,
   useGetCharactersQuery,
   usePostCharactersMutation,
+  usePostLessonsMutation,
+  useGetLessonsQuery,
 } = Courses
