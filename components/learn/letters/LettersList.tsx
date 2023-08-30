@@ -1,11 +1,15 @@
 "use client"
-import { useGetLessonsQuery } from "@/store/slices/Courses"
+import {
+  useGetCharactersQuery,
+  useGetLessonsQuery,
+} from "@/store/slices/Courses"
 import Letter from "./Letter"
 
 type Props = {}
 
 const LettersList = (props: Props) => {
   const { data: letters } = useGetLessonsQuery("getall")
+  const { data: characters } = useGetCharactersQuery("getall")
   console.log("🚀 ~ file: LettersList.tsx:8 ~ LettersList ~ letters:", letters)
 
   return (

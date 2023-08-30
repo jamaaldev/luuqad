@@ -8,6 +8,7 @@ export async function GET() {
         id: true,
         user_id: true,
         Direction_fk: true,
+        Character: true,
       },
     })
 

@@ -7,6 +7,11 @@ type Props = {}
 
 const AlphabetList = (props: Props) => {
   const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
+  console.log(
+    "🚀 ~ file: AlphabetList.tsx:10 ~ AlphabetList ~ alphabetsGetAllDirection:",
+    alphabetsGetAllDirection,
+  )
+
   return (
     <div>
       <div className='flex flex-col'>
