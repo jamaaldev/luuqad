@@ -18,7 +18,7 @@ const CoursesCard = (props: Props) => {
     )
 
     addLesson({
-      Direction_fk: direction.currentTarget.dataset.direction,
+      alphabet_id: props.course.id,
       user_id: session?.user?.id,
     })
       .then((data) => {

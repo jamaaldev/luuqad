@@ -168,7 +168,8 @@ model AlphaBets {
   Langauge String
   Translate String
   Direction String @unique
- 
+  Courses Courses []
+  Character Characters[]
 }
 
 model Characters {
@@ -180,19 +181,23 @@ StrengthProgress Float @default(0.0)
 State String
 Direction_fk String 
 
-Courses Courses @relation("course",fields: [Direction_fk],references: [Direction_fk])
+
+
+Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
+
 
 @@index([Direction_fk])
-
-
 }
 
 model Courses {
   id Int @unique @default( autoincrement())
   user_id Int
+  alphabet_id Int @unique
+  
+  Alphabets AlphaBets @relation(fields: [alphabet_id],references: [id])
 
-  Direction_fk String  @unique
 
 
- Character Characters[] @relation("course") 
+  @@index([alphabet_id])
+ 
 }

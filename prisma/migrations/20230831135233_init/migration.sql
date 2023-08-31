@@ -133,30 +133,40 @@ CREATE TABLE `UserSection` (
 
 -- CreateTable
 CREATE TABLE `AlphaBets` (
-    `id` VARCHAR(191) NOT NULL,
-    `title` VARCHAR(191) NOT NULL,
-    `subtitle` VARCHAR(191) NOT NULL,
-    `langauge` VARCHAR(191) NOT NULL,
-    `translate` VARCHAR(191) NOT NULL,
-    `direction` VARCHAR(191) NOT NULL,
-    `user_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `Title` VARCHAR(191) NOT NULL,
+    `SubTitle` VARCHAR(191) NOT NULL,
+    `Langauge` VARCHAR(191) NOT NULL,
+    `Translate` VARCHAR(191) NOT NULL,
+    `Direction` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `AlphaBets_id_key`(`id`),
-    UNIQUE INDEX `AlphaBets_direction_key`(`direction`),
-    INDEX `AlphaBets_user_id_idx`(`user_id`),
+    UNIQUE INDEX `AlphaBets_Direction_key`(`Direction`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Characters` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `character` VARCHAR(191) NOT NULL,
-    `transliteration` VARCHAR(191) NOT NULL,
-    `tsaurl` VARCHAR(191) NOT NULL,
-    `strengthprogress` DOUBLE NOT NULL DEFAULT 0.0,
-    `state` VARCHAR(191) NOT NULL,
-    `direction_fk` VARCHAR(191) NOT NULL,
+    `Character` VARCHAR(191) NOT NULL,
+    `Transliteration` VARCHAR(191) NOT NULL,
+    `TsAUrl` VARCHAR(191) NOT NULL,
+    `StrengthProgress` DOUBLE NOT NULL DEFAULT 0.0,
+    `State` VARCHAR(191) NOT NULL,
+    `Direction_fk` VARCHAR(191) NOT NULL,
 
-    INDEX `Characters_direction_fk_idx`(`direction_fk`),
+    INDEX `Characters_Direction_fk_idx`(`Direction_fk`),
     PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Courses` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `user_id` INTEGER NOT NULL,
+    `alphabet_id` INTEGER NOT NULL,
+    `character_id` INTEGER NOT NULL,
+
+    UNIQUE INDEX `Courses_id_key`(`id`),
+    INDEX `Courses_alphabet_id_idx`(`alphabet_id`),
+    INDEX `Courses_character_id_idx`(`character_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
