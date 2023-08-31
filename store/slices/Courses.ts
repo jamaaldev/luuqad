@@ -52,7 +52,7 @@ export const Courses = createApi({
         body: data,
       }),
     }),
-    getLessons: builder.query<CoursesTypeValid[], string>({
+    getLessons: builder.query<CharacterTypeValid[], string>({
       query: (getall) => ({
         url: `/api/courses/lessons/${getall}`,
         method: "GET",

@@ -1,4 +1,8 @@
-type Props = {}
+import { CharacterTypeValid } from "@/validations/CharacterValid"
+
+type Props = {
+  letters: CharacterTypeValid
+}
 
 const Letter = (props: Props) => {
   // Example data from database which text has not uppercase default all text is uppercase
@@ -8,8 +12,10 @@ const Letter = (props: Props) => {
     <div className='text-center'>
       <button className='relative  uppercase min-w-[40px] w-full active:translate-y-[2px] active:translate-z-0 before:active:shadow-none before:content-[""] before:absolute before:shadow-border_b before:shadow-slate-200 before:border-2 before:-left-2 before:-right-2 before:-top-2 before:-bottom-2 before:rounded-2 '>
         <span className={`flex flex-col w-full items-center `} translate='no'>
-          <span className={`h-6 text-slate-700 text-2xl font-medium `}>a</span>
-          <span className={``}>eey</span>
+          <span className={`h-6 text-slate-700 text-2xl font-medium `}>
+            {props.letters.Character}
+          </span>
+          <span className={``}>{props.letters.Transliteration}</span>
           <div
             className='progress-bar overflow-hidden min-w-[40px] rounded-full '
             role={"progressbar"}
