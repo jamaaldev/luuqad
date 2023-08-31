@@ -49,12 +49,24 @@ export const RightBar = (props: Props) => {
           )}
           {params.locale == "so" ? (
             <button className='relative flex cursor-pointer bg-blue-400 items-center gap-2 rounded-xl px-1 py-1 font-bold uppercase text-white hover:bg-blue-600'>
-              <Image width={50} height={50} src={"/svg/English.svg"} alt='' />
+              <Image
+                priority={true}
+                width={50}
+                height={50}
+                src={"/svg/English.svg"}
+                alt=''
+              />
               {/* <div>EN</div> */}
             </button>
           ) : (
             <button className='relative flex cursor-pointer bg-blue-300 items-center gap-2 rounded-xl px-1 py-1 font-bold uppercase text-white hover:bg-blue-400'>
-              <Image width={50} height={50} src={"/svg/somali.svg"} alt='' />
+              <Image
+                priority={true}
+                width={50}
+                height={50}
+                src={"/svg/somali.svg"}
+                alt=''
+              />
               {/* <div>SO</div> */}
             </button>
           )}
