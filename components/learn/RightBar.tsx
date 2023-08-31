@@ -5,14 +5,13 @@ import {
   TreasureProgressSvg,
 } from "@/components/SVGs"
 import { useGetPointsQuery } from "@/store/slices/PointSlice"
-import languages from "@/utils/languages"
-import { SetStateAction } from "react"
 import { useTranslations } from "next-intl"
-import { Flag } from "./Flag"
+import Link from "next-intl/link"
+import Image from "next/image"
+import { useParams } from "next/navigation"
+import { SetStateAction } from "react"
 import ProfileAddFriends from "./profile/ProfileAddFriends"
 import ProfileFriendFollow from "./profile/ProfileFriendFollow"
-import Link from "next-intl/link"
-import { useParams, useRouter } from "next/navigation"
 
 type Props = {
   SetModelIsOpen?: React.Dispatch<SetStateAction<boolean>> | any
@@ -47,6 +46,17 @@ export const RightBar = (props: Props) => {
               {/* <Flag language={language} width={45} /> */}
               <div>SO</div>
             </Link>
+          )}
+          {params.locale == "so" ? (
+            <button className='relative flex cursor-pointer bg-blue-400 items-center gap-2 rounded-xl px-1 py-1 font-bold uppercase text-white hover:bg-blue-600'>
+              <Image width={50} height={50} src={"/svg/English.svg"} alt='' />
+              {/* <div>EN</div> */}
+            </button>
+          ) : (
+            <button className='relative flex cursor-pointer bg-blue-300 items-center gap-2 rounded-xl px-1 py-1 font-bold uppercase text-white hover:bg-blue-400'>
+              <Image width={50} height={50} src={"/svg/somali.svg"} alt='' />
+              {/* <div>SO</div> */}
+            </button>
           )}
           <span className='relative flex cursor-pointer items-center gap-2 rounded-xl p-3 font-bold text-orange-500 hover:bg-gray-100'>
             <div>{streak > 0 ? <FireSvg /> : <EmptyFireSvg />}</div>
