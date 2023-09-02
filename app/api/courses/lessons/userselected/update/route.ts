@@ -6,7 +6,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const userSelected: UserSelectedTypeValid = await req.json()
     const findSelected: UserSelectedTypeValid =
-      await prisma.userSelected.findFirst({
+      await prisma.userSelected.findFirstOrThrow({
         where: { user_id: userSelected.user_id },
         select: {
           isSelected: true,

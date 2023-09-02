@@ -19,6 +19,7 @@ const CoursesCard = (props: Props) => {
   const handleClick = (direction: React.SyntheticEvent<HTMLElement>) => {
     updateSelectedCourse({
       user_id: session?.user?.id,
+
       isSelected: props.course.id,
     })
       .then((data) => {
