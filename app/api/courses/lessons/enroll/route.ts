@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server"
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const lessons: CoursesTypeValid = await req.json()
-    const NewCourses: CoursesTypeValid = await prisma.courses.create({
+    const NewCourses: CoursesTypeValid = await prisma.userCourses.create({
       data: lessons,
     })
     return NextResponse.json(

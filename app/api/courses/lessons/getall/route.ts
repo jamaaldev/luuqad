@@ -16,7 +16,7 @@ export async function GET() {
       )
     }
     // only get what user belong
-    const userCourse = await prisma.courses.findMany({
+    const userCourse = await prisma.userCourses.findMany({
       where: { user_id: Number(session?.user?.id) },
       select: {
         id: true,
@@ -33,7 +33,7 @@ export async function GET() {
     })
     // user chooses One Course and return data
     let getOne = userAlphabets.filter(
-      (onelesson) => onelesson.Direction === "En_So",
+      (onelesson) => onelesson.Direction === "So_En",
     )
 
     const lessonsGetAll = await prisma.characters.findMany({

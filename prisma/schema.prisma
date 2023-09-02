@@ -168,7 +168,7 @@ model AlphaBets {
   Langauge String
   Translate String
   Direction String @unique
-  Courses Courses []
+  UserCourses UserCourses []
   Character Characters[]
 }
 
@@ -189,15 +189,22 @@ Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 @@index([Direction_fk])
 }
 
-model Courses {
+model UserCourses {
   id Int @unique @default( autoincrement())
   user_id Int
   alphabet_id Int
-  
+  isSelected Int @unique
   Alphabets AlphaBets @relation(fields: [alphabet_id],references: [id])
 
 
 
   @@index([alphabet_id])
  
+}
+
+model UserSelected {
+  id Int  @unique @default( autoincrement())
+  user_id Int @unique
+  isSelected Int 
+
 }

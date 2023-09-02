@@ -1,4 +1,8 @@
-import { usePostLessonsMutation } from "@/store/slices/Courses"
+import {
+  usePostLessonsMutation,
+  usePostUserSelectedMutation,
+  useUpdateUserSelectedMutation,
+} from "@/store/slices/Courses"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
@@ -10,16 +14,31 @@ type Props = {
 const CoursesCard = (props: Props) => {
   const { data: session, status } = useSession()
   const [addLesson] = usePostLessonsMutation()
+  const [addSelectedCourse] = usePostUserSelectedMutation()
+  const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const handleClick = (direction: React.SyntheticEvent<HTMLElement>) => {
-    console.log("yes click", direction.currentTarget.dataset.direction)
-    console.log(
-      "🚀 ~ file: CoursesCard.tsx:15 ~ handleClick ~ session:",
-      session,
-    )
-
+    updateSelectedCourse({
+      user_id: session?.user?.id,
+      isSelected: props.course.id,
+    })
+      .then((data) => {
+        console.log("updated selected success", data)
+      })
+      .catch((error) => {
+        console.log("update selected error", error)
+      })
+    addSelectedCourse({
+      user_id: session?.user?.id,
+      isSelected: props.course.id,
+    })
+      .then((data) => {
+        console.log("add selected success", data)
+      })
+      .catch((error) => console.log("addlesson error", error))
     addLesson({
       alphabet_id: props.course.id,
       user_id: session?.user?.id,
+      isSelected: props.course.id,
     })
       .then((data) => {
         console.log("add lesson success", data)

@@ -4,6 +4,7 @@ import { CharacterTypeValid } from "@/validations/CharacterValid"
 import { CoursesTypeValid } from "@/validations/CoursesIsValid"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
+import { UserSelectedTypeValid } from "./../../validations/UserSelectedIsValid"
 
 export const Courses = createApi({
   reducerPath: "coursesApi",
@@ -58,6 +59,26 @@ export const Courses = createApi({
         method: "GET",
       }),
     }),
+    postUserSelected: builder.mutation<UserSelectedTypeValid[], {}>({
+      query: (data) => ({
+        url: `/api/courses/lessons/userselected/create`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateUserSelected: builder.mutation<UserSelectedTypeValid[], {}>({
+      query: (data) => ({
+        url: `/api/courses/lessons/userselected/update`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getUserSelected: builder.query<UserSelectedTypeValid[], string>({
+      query: (getall) => ({
+        url: `/api/courses/lessons/userselected/${getall}`,
+        method: "GET",
+      }),
+    }),
   }),
 })
 
@@ -68,4 +89,7 @@ export const {
   usePostCharactersMutation,
   usePostLessonsMutation,
   useGetLessonsQuery,
+  usePostUserSelectedMutation,
+  useGetUserSelectedQuery,
+  useUpdateUserSelectedMutation,
 } = Courses
