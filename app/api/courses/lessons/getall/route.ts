@@ -6,7 +6,15 @@ import { NextResponse } from "next/server"
 export async function GET() {
   try {
     const session = await getServerSession(options)
-
+    if (!session) {
+      return NextResponse.json(
+        {
+          error:
+            "Hey, you're not authorized, what you doing here? Trying to be a hacker?",
+        },
+        { status: 401 },
+      )
+    }
     // only get what user belong
     const userCourse = await prisma.courses.findMany({
       where: { user_id: Number(session?.user?.id) },
@@ -46,6 +54,12 @@ export async function GET() {
 
     return NextResponse.json(lessonsGetAll)
   } catch (error) {
-    console.log(error)
+    // You might want to return a proper response in case of an error
+    return NextResponse.json(
+      {
+        error: "Sorry, something went wrong.",
+      },
+      { status: 500 },
+    )
   }
 }

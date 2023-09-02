@@ -1,12 +1,4 @@
 "use client"
-import type { NextPage } from "next"
-import React, { useEffect, useState } from "react"
-import { LeftBar } from "@/components/learn/LeftBar"
-import { BottomBar } from "@/components/learn/BottomBar"
-import { RightBar } from "@/components/learn/RightBar"
-import Link from "next/link"
-import { useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
 import {
   BronzeLeagueSvg,
   FirstPlaceSvg,
@@ -16,10 +8,18 @@ import {
   SecondPlaceSvg,
   ThirdPlaceSvg,
 } from "@/components/SVGs"
-import Image from "next/image"
+import { BottomBar } from "@/components/learn/BottomBar"
+import { LeftBar } from "@/components/learn/LeftBar"
+import { RightBar } from "@/components/learn/RightBar"
 import { useGetLeadersQuery } from "@/store/slices/LeaderBoardSlice"
 import { useGetCurrentUserQuery } from "@/store/slices/UserSlice"
 import NameAvatar from "@/utils/NameAvatar"
+import type { NextPage } from "next"
+import { useTranslations } from "next-intl"
+import Image from "next/image"
+import Link from "next/link"
+import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
 const LeaderboardProfile = ({
   place,
   name,
@@ -117,7 +117,7 @@ const Leaderboard: NextPage = () => {
   }, [leaders, currentUser, isLoading])
 
   const { locale } = useParams()
-  const t = useTranslations("Leaderboard")
+  const t = useTranslations("Leaderboards")
 
   let leaderboardName: any = "Leaderboard"
   if (locale == "so") {

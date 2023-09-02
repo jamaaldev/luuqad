@@ -2,7 +2,7 @@ import * as yup from "yup"
 
 export const CoursesSchemaValid = yup.object({
   user_id: yup.number().required(),
-  alphabet_id: yup.string().required(),
+  alphabet_id: yup.number().required(),
 })
 
 export interface CoursesTypeValid

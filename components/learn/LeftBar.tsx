@@ -1,10 +1,10 @@
 import { signOut } from "next-auth/react"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
+import { useParams } from "next/navigation"
 import type { ComponentProps } from "react"
 import type { Tab } from "./BottomBar"
 import { useBottomBarItems } from "./BottomBar"
-import { useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
 
 const LeftBarMoreMenuSvg = (props: ComponentProps<"svg">) => {
   return (
