@@ -117,7 +117,7 @@ const Leaderboard: NextPage = () => {
   }, [leaders, currentUser, isLoading])
 
   const { locale } = useParams()
-  const t = useTranslations("Leaderboards")
+  const t = useTranslations("Leaderboard")
 
   let leaderboardName: any = "Leaderboard"
   if (locale == "so") {
