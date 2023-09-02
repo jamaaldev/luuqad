@@ -11,7 +11,7 @@ type BottomBarItem = {
   icon: React.ReactNode
 }
 
-export type Tab = "Learn" | "Profile" | "Courses" | "Leaderboard"
+export type Tab = "Learn" | "Profile" | "Letters" | "Courses" | "Leaderboard"
 
 export const useBottomBarItems = () => {
   const { locale } = useParams()
@@ -52,8 +52,8 @@ export const useBottomBarItems = () => {
       ),
     },
     {
-      name: t("Courses"),
-      href: `/${locale}/learn/courses`,
+      name: t("Letters"),
+      href: `/${locale}/learn/letters`,
       icon: (
         <svg
           width='32'

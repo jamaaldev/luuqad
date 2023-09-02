@@ -1,5 +1,6 @@
 import LuuqadIconX from "@/components/icons/LuuqadIconX"
 import Image from "next/image"
+import Link from "next/link"
 
 type Props = {
   isopen: boolean
@@ -27,7 +28,7 @@ const CoursePopOver = (props: Props) => {
             <span className='p-2 bg-slate-100 rounded-lg '>
               <LuuqadIconX width={15} />
             </span>
-            <p>Add a New Course</p>
+            <Link href={"/learn/courses"}>Add a New Course</Link>
           </div>
         </div>
       ) : (
