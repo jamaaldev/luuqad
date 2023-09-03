@@ -8,9 +8,17 @@ const Letter = (props: Props) => {
   // Example data from database which text has not uppercase default all text is uppercase
   // this is for if some text need to be lowercase by dymanic
   const NotUpperCase = "normal-case"
+
+  const handleAudio = () => {
+    const playCharacter = new Audio(props.letters.TsAUrl)
+
+    playCharacter.play()
+  }
   return (
     <div className='text-center'>
-      <button className='relative  uppercase min-w-[40px] w-full active:translate-y-[2px] active:translate-z-0 before:active:shadow-none before:content-[""] before:absolute before:shadow-border_b before:shadow-slate-200 before:border-2 before:-left-2 before:-right-2 before:-top-2 before:-bottom-2 before:rounded-2 '>
+      <button
+        onClick={handleAudio}
+        className='relative  uppercase min-w-[40px] w-full active:translate-y-[2px] active:translate-z-0 before:active:shadow-none before:content-[""] before:absolute before:shadow-border_b before:shadow-slate-200 before:border-2 before:-left-2 before:-right-2 before:-top-2 before:-bottom-2 before:rounded-2 '>
         <span className={`flex flex-col w-full items-center `} translate='no'>
           <span className={`h-6 text-slate-700 text-2xl font-medium `}>
             {props.letters.Character}
