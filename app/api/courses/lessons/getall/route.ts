@@ -22,6 +22,7 @@ export async function GET() {
         id: true,
         user_id: true,
         Alphabets: true,
+        isSelected: true,
       },
     })
     // get all the user enroll courses
@@ -29,12 +30,11 @@ export async function GET() {
       where: { id: { in: userCourse.map((course) => course.Alphabets.id) } },
       select: {
         Direction: true,
+        id: true,
       },
     })
     // user chooses One Course and return data
-    let getOne = userAlphabets.filter(
-      (onelesson) => onelesson.Direction === "So_En",
-    )
+    let getOne = userAlphabets.filter((onelesson) => onelesson.id === 1)
 
     const lessonsGetAll = await prisma.characters.findMany({
       where: {

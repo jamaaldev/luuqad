@@ -13,8 +13,8 @@ type Props = {
 
 const CoursesCard = (props: Props) => {
   const { data: session, status } = useSession()
-  const [addLesson] = usePostLessonsMutation()
-  const [addSelectedCourse] = usePostUserSelectedMutation()
+  const [addNewLesson] = usePostLessonsMutation()
+  const [addUserSelectedCourse] = usePostUserSelectedMutation()
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const handleClick = (direction: React.SyntheticEvent<HTMLElement>) => {
     updateSelectedCourse({
@@ -28,7 +28,7 @@ const CoursesCard = (props: Props) => {
       .catch((error) => {
         console.log("update selected error", error)
       })
-    addSelectedCourse({
+    addUserSelectedCourse({
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
@@ -36,7 +36,8 @@ const CoursesCard = (props: Props) => {
         console.log("add selected success", data)
       })
       .catch((error) => console.log("addlesson error", error))
-    addLesson({
+
+    addNewLesson({
       alphabet_id: props.course.id,
       user_id: session?.user?.id,
       isSelected: props.course.id,

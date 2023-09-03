@@ -5,8 +5,9 @@ import { NextRequest, NextResponse } from "next/server"
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const userSelected: UserSelectedTypeValid = await req.json()
-    const findSelected: UserSelectedTypeValid =
-      await prisma.userSelected.findFirstOrThrow({
+
+    const findSelected: UserSelectedTypeValid | null =
+      await prisma.userSelected.findFirst({
         where: { user_id: userSelected.user_id },
         select: {
           isSelected: true,
@@ -14,7 +15,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
           id: true,
         },
       })
-    console.log("🚀 ~ file: route.ts:11 ~ POST ~ findSelected:", findSelected)
 
     if (findSelected == null) {
       const NewCourses: UserSelectedTypeValid =
@@ -29,6 +29,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
       { status: 200 },
     )
   } catch (error) {
-    console.log("🚀 ~ file: route.ts:16 ~ POST ~ error:", error)
+    // You might want to return a proper response in case of an error
+    return NextResponse.json(
+      {
+        error: "Sorry, something went wrong.",
+      },
+      { status: 500 },
+    )
   }
 }

@@ -191,9 +191,9 @@ Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 
 model UserCourses {
   id Int @unique @default( autoincrement())
-  user_id Int
+  user_id Int 
   alphabet_id Int
-  isSelected Int @unique
+  isSelected Int 
   Alphabets AlphaBets @relation(fields: [alphabet_id],references: [id])
 
 
