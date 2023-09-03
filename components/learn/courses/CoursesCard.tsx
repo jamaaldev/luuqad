@@ -23,19 +23,19 @@ const CoursesCard = (props: Props) => {
       isSelected: props.course.id,
     })
       .then((data) => {
-        console.log("updated selected success", data)
+        console.log("Updated Selected Success", data)
       })
       .catch((error) => {
-        console.log("update selected error", error)
+        console.log("updateSelectedCourse Error", error)
       })
     addUserSelectedCourse({
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
       .then((data) => {
-        console.log("add selected success", data)
+        console.log("Added Selected Course", data)
       })
-      .catch((error) => console.log("addlesson error", error))
+      .catch((error) => console.log("addUserSelectedCourse Error", error))
 
     addNewLesson({
       alphabet_id: props.course.id,
@@ -43,9 +43,9 @@ const CoursesCard = (props: Props) => {
       isSelected: props.course.id,
     })
       .then((data) => {
-        console.log("add lesson success", data)
+        console.log("Added New Lesson Success", data)
       })
-      .catch((error) => console.log("addlesson error", error))
+      .catch((error) => console.log("addNewLesson Error", error))
   }
   return (
     <div
