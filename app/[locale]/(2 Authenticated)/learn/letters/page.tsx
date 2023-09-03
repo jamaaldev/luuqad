@@ -4,11 +4,12 @@ import { BottomBar } from "@/components/learn/BottomBar"
 import { LeftBar } from "@/components/learn/LeftBar"
 import { TopBar } from "@/components/learn/TopBar"
 import LettersList from "@/components/learn/letters/LettersList"
+import { NextPage } from "next"
 import { useParams } from "next/navigation"
 
 type Props = {}
 
-const page = (props: Props) => {
+const Letters: NextPage = (props: Props) => {
   const { locale } = useParams()
 
   let lettersName: any = "Letters"
@@ -33,4 +34,4 @@ const page = (props: Props) => {
   )
 }
 
-export default page
+export default Letters

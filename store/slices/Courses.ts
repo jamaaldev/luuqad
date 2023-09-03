@@ -86,7 +86,7 @@ export const Courses = createApi({
     updateUserSelected: builder.mutation<UserSelectedTypeValid[], {}>({
       query: (data) => ({
         url: `/api/courses/lessons/userselected/update`,
-        method: "UPDATE",
+        method: "POST",
         body: data,
       }),
       invalidatesTags: ["UserSelectedTypeValid"],
