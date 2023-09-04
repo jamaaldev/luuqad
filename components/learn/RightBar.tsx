@@ -7,10 +7,9 @@ import {
 import { useGetPointsQuery } from "@/store/slices/PointSlice"
 import { useTranslations } from "next-intl"
 import Link from "next-intl/link"
-import Image from "next/image"
 import { useParams } from "next/navigation"
 import { SetStateAction, useState } from "react"
-import CoursePopOver from "./popover/CoursePopOver"
+import CourseSelected from "./courses/CourseSelected"
 import ProfileAddFriends from "./profile/ProfileAddFriends"
 import ProfileFriendFollow from "./profile/ProfileFriendFollow"
 
@@ -61,37 +60,7 @@ export const RightBar = (props: Props) => {
               <div>SO</div>
             </Link>
           )}
-          <div
-            onMouseEnter={handlMouseEnter}
-            onMouseLeave={handlMouseLeave}
-            className=' relative'>
-            {params.locale == "so" ? (
-              <button className='relative flex cursor-pointer  items-center gap-2 rounded-xl px-1 py-1 font-bold uppercase text-white '>
-                <Image
-                  priority={true}
-                  width={50}
-                  height={50}
-                  src={"/svg/English.svg"}
-                  alt=''
-                />
-                {/* <div>EN</div> */}
-              </button>
-            ) : (
-              <button className='relative flex cursor-pointer items-center gap-2 rounded-xl px-2 py-2 font-bold uppercase text-white hover:bg-slate-100'>
-                <Image
-                  priority={true}
-                  width={50}
-                  height={50}
-                  src={"/svg/somali.svg"}
-                  alt=''
-                />
-                {/* <div>SO</div> */}
-              </button>
-            )}
-            <div className='absolute w-max -translate-x-2/4  left-1/2 right-1/2 z-10'>
-              <CoursePopOver isopen={isopen} />
-            </div>
-          </div>
+          <CourseSelected />
           <span className='relative flex cursor-pointer items-center gap-2 rounded-xl p-3 font-bold text-orange-500 hover:bg-gray-100'>
             <div>{streak > 0 ? <FireSvg /> : <EmptyFireSvg />}</div>
             <span className={streak > 0 ? "text-orange-500" : "text-gray-300"}>

@@ -22,6 +22,15 @@ const CoursePopOver = (props: Props) => {
 
       isSelected: id,
     })
+      .then((data) => {
+        console.log("🚀 ~ file: CoursePopOver.tsx:27 ~ .then ~ data:", data)
+      })
+      .catch((error) => {
+        console.log(
+          "🚀 ~ file: CoursePopOver.tsx:28 ~ handleClick ~ error:",
+          error,
+        )
+      })
     console.log("🚀 ~ file: CoursePopOver.tsx:14 ~ CoursePopOver ~ id:", id)
   }
 

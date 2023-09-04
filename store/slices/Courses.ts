@@ -91,9 +91,9 @@ export const Courses = createApi({
       }),
       invalidatesTags: ["UserSelectedTypeValid"],
     }),
-    getUserSelected: builder.query<UserSelectedTypeValid[], string>({
-      query: (getall) => ({
-        url: `/api/courses/lessons/userselected/${getall}`,
+    getUserSelected: builder.query<UserSelectedTypeValid, string>({
+      query: (getone) => ({
+        url: `/api/courses/lessons/userselected/${getone}`,
         method: "GET",
       }),
       providesTags: ["UserSelectedTypeValid"],
