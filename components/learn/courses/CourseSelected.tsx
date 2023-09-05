@@ -36,7 +36,7 @@ const CourseSelected = () => {
             priority={true}
             width={50}
             height={50}
-            src={`/svg/${selectedCourse?.Langauge}.svg`}
+            src={`/svg/${selectedCourse?.Langauge || undefined}.svg`}
             alt={selectedCourse?.Langauge || "langauge"}
           />
         </button>
