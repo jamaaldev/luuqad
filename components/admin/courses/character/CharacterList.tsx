@@ -3,9 +3,7 @@
 import { useGetCharactersQuery } from "@/store/slices/Courses"
 import Link from "next/link"
 
-type Props = {}
-
-const CharacterList = (props: Props) => {
+const CharacterList = () => {
   const { data: charactersGetAll } = useGetCharactersQuery("getall")
   return (
     <div>

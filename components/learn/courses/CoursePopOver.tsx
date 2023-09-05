@@ -14,7 +14,7 @@ type Props = {
 const CoursePopOver = (props: Props) => {
   const { data: courses } = useGetAlphaBetsQuery("getall")
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   const handleClick = (id: number | undefined) => {
     updateSelectedCourse({
@@ -22,16 +22,6 @@ const CoursePopOver = (props: Props) => {
 
       isSelected: id,
     })
-      .then((data) => {
-        console.log("🚀 ~ file: CoursePopOver.tsx:27 ~ .then ~ data:", data)
-      })
-      .catch((error) => {
-        console.log(
-          "🚀 ~ file: CoursePopOver.tsx:28 ~ handleClick ~ error:",
-          error,
-        )
-      })
-    console.log("🚀 ~ file: CoursePopOver.tsx:14 ~ CoursePopOver ~ id:", id)
   }
 
   return (

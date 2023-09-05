@@ -1,8 +1,6 @@
 import CharacterList from "@/components/admin/courses/character/CharacterList"
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <CharacterList />

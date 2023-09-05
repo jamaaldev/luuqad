@@ -1,8 +1,6 @@
 import AlphabetList from "@/components/admin/courses/alphabet/AlphabetList"
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <AlphabetList />

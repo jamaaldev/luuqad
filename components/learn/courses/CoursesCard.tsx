@@ -12,40 +12,27 @@ type Props = {
 }
 
 const CoursesCard = (props: Props) => {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   const [addNewLesson] = usePostLessonsMutation()
   const [addUserSelectedCourse] = usePostUserSelectedMutation()
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
-  const handleClick = (direction: React.SyntheticEvent<HTMLElement>) => {
+  const handleClick = () => {
     updateSelectedCourse({
       user_id: session?.user?.id,
 
       isSelected: props.course.id,
     })
-      .then((data) => {
-        console.log("Updated Selected Success", data)
-      })
-      .catch((error) => {
-        console.log("updateSelectedCourse Error", error)
-      })
+
     addUserSelectedCourse({
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
-      .then((data) => {
-        console.log("Added Selected Course", data)
-      })
-      .catch((error) => console.log("addUserSelectedCourse Error", error))
 
     addNewLesson({
       alphabet_id: props.course.id,
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
-      .then((data) => {
-        console.log("Added New Lesson Success", data)
-      })
-      .catch((error) => console.log("addNewLesson Error", error))
   }
   return (
     <div

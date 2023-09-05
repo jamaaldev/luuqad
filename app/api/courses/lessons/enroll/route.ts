@@ -1,9 +1,23 @@
+import { options } from "@/app/api/auth/[...nextauth]/options"
 import { prisma } from "@/lib/prisma"
 import { CoursesTypeValid } from "@/validations/CoursesIsValid"
+import { getServerSession } from "next-auth"
+
 import { NextRequest, NextResponse } from "next/server"
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(options)
+
+    if (!session) {
+      return NextResponse.json(
+        {
+          error:
+            "Hey, you're not authorized, what you doing here? Trying to be a hacker?",
+        },
+        { status: 401 },
+      )
+    }
     const newLessons: CoursesTypeValid = await req.json()
     // check 2 filter and return value or null
     const UserCourseExist: CoursesTypeValid | null =
@@ -31,7 +45,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         { status: 409 },
       )
     }
-    const NewCourses: CoursesTypeValid = await prisma.userCourses.create({
+    await prisma.userCourses.create({
       data: newLessons,
     })
     return NextResponse.json(

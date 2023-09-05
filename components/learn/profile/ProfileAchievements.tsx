@@ -3,8 +3,6 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import RewardCard from "../achievement/RewardCard"
 
-type Props = {}
-
 type FakeData = {
   reward: string
   tips: string
@@ -14,7 +12,7 @@ type FakeData = {
   reach: number
   range: number
 }
-const ProfileAchievements = (props: Props) => {
+const ProfileAchievements = () => {
   const [rewardData, SetReward] = useState([])
 
   useEffect(() => {

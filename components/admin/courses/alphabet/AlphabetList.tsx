@@ -3,14 +3,8 @@
 import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
 import Link from "next/link"
 
-type Props = {}
-
-const AlphabetList = (props: Props) => {
+const AlphabetList = () => {
   const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
-  console.log(
-    "🚀 ~ file: AlphabetList.tsx:10 ~ AlphabetList ~ alphabetsGetAllDirection:",
-    alphabetsGetAllDirection,
-  )
 
   return (
     <div>

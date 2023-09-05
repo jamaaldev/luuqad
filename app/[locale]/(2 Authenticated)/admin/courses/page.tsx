@@ -1,8 +1,6 @@
 import Link from "next/link"
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <div className='flex flex-col items-center justify-center w-full mt-4 space-y-4 text-center'>

@@ -1,8 +1,6 @@
 import CharacterCreate from "@/components/admin/courses/character/CharacterCreate"
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <CharacterCreate />

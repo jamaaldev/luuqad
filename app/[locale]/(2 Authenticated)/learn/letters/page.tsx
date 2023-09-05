@@ -7,9 +7,7 @@ import LettersList from "@/components/learn/letters/LettersList"
 import { NextPage } from "next"
 import { useParams } from "next/navigation"
 
-type Props = {}
-
-const Letters: NextPage = (props: Props) => {
+const Letters: NextPage = () => {
   const { locale } = useParams()
 
   let lettersName: any = "Letters"

@@ -8,7 +8,7 @@ import { useGetPointsQuery } from "@/store/slices/PointSlice"
 import { useTranslations } from "next-intl"
 import Link from "next-intl/link"
 import { useParams } from "next/navigation"
-import { SetStateAction, useState } from "react"
+import { SetStateAction } from "react"
 import CourseSelected from "./courses/CourseSelected"
 import ProfileAddFriends from "./profile/ProfileAddFriends"
 import ProfileFriendFollow from "./profile/ProfileFriendFollow"
@@ -17,8 +17,6 @@ type Props = {
   SetModelIsOpen?: React.Dispatch<SetStateAction<boolean>> | any
 }
 export const RightBar = (props: Props) => {
-  const [isopen, SetOpen] = useState(false)
-
   const params = useParams()
   const { data: points } = useGetPointsQuery<any>()
   const totalPoints = points?.points.reduce(
@@ -28,16 +26,6 @@ export const RightBar = (props: Props) => {
     0,
   )
 
-  const handlMouseEnter = (event: React.MouseEvent) => {
-    if (event.type === "mouseenter") {
-      SetOpen(true)
-    }
-  }
-  const handlMouseLeave = (event: React.MouseEvent) => {
-    if (event.type === "mouseleave") {
-      SetOpen(false)
-    }
-  }
   const streak = totalPoints || 0
   return (
     <>

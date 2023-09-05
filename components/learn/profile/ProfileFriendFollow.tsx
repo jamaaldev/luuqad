@@ -2,9 +2,7 @@ import Image from "next/image"
 import { useParams } from "next/navigation"
 import { useState } from "react"
 
-type Props = {}
-
-const ProfileFriendFollow = (props: Props) => {
+const ProfileFriendFollow = () => {
   const { locale } = useParams()
 
   let profileFollowing: string = "Following"

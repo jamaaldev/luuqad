@@ -2,17 +2,13 @@ import {
   useGetAlphaBetsQuery,
   useGetUserSelectedQuery,
 } from "@/store/slices/Courses"
-import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useState } from "react"
 import CoursePopOver from "./CoursePopOver"
 
-type Props = {}
-
-const CourseSelected = (props: Props) => {
+const CourseSelected = () => {
   const { data: usercourses } = useGetAlphaBetsQuery("getall")
   const { data: userselected } = useGetUserSelectedQuery("getone")
-  const { data: session, status } = useSession()
 
   const selectedCourse = usercourses?.find(
     (course) => course && course.id === userselected?.isSelected,

@@ -5,12 +5,10 @@ import {
   CharacterSchemaValid,
   CharacterTypeValid,
 } from "@/validations/CharacterValid"
-import { Field, Form, Formik, FormikHelpers } from "formik"
+import { Field, Form, Formik } from "formik"
 import Link from "next/link"
 
-type Props = {}
-
-const CharacterCreate = (props: Props) => {
+const CharacterCreate = () => {
   const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
 
   const initialValues: CharacterTypeValid = {
@@ -21,12 +19,7 @@ const CharacterCreate = (props: Props) => {
     Direction_fk: "",
   }
 
-  const onSubmit = async (
-    values: CharacterTypeValid,
-    action: FormikHelpers<CharacterTypeValid>,
-  ) => {
-    // action.resetForm()
-    console.log("characterCreate ", values)
+  const onSubmit = async (values: CharacterTypeValid) => {
     const isValid = await CharacterSchemaValid.isValid(values)
     if (isValid === true) {
       try {

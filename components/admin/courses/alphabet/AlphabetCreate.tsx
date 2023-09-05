@@ -4,12 +4,10 @@ import {
   AlphaBetSchemaValid,
   AlphaBetTypeValid,
 } from "@/validations/AlphabetIsValid"
-import { Field, Form, Formik, FormikHelpers } from "formik"
+import { Field, Form, Formik } from "formik"
 import Link from "next/link"
 
-type Props = {}
-
-const AlphabetCreate = (props: Props) => {
+const AlphabetCreate = () => {
   const initialValues: AlphaBetTypeValid = {
     Title: "",
     SubTitle: "",
@@ -18,11 +16,7 @@ const AlphabetCreate = (props: Props) => {
     Direction: "",
   }
 
-  const onSubmit = async (
-    values: AlphaBetTypeValid,
-    action: FormikHelpers<AlphaBetTypeValid>,
-  ) => {
-    // action.resetForm()
+  const onSubmit = async (values: AlphaBetTypeValid) => {
     const isValid = await AlphaBetSchemaValid.isValid(values)
     if (isValid === true) {
       try {
