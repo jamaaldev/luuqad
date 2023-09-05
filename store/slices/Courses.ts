@@ -2,7 +2,11 @@ import BASE_URL from "@/utils/baseUrl"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { CharacterTypeValid } from "@/validations/CharacterValid"
 import { CoursesTypeValid } from "@/validations/CoursesIsValid"
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import {
+  BaseQueryApi,
+  createApi,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
 import { UserSelectedTypeValid } from "./../../validations/UserSelectedIsValid"
 import { addTokenToRequest } from "./Token"
@@ -12,7 +16,15 @@ export const Courses = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     credentials: "same-origin",
-    prepareHeaders: (headers, { getState }: any) => {
+    prepareHeaders: (
+      headers,
+      {
+        getState,
+      }: Pick<
+        BaseQueryApi,
+        "getState" | "extra" | "endpoint" | "type" | "forced"
+      >,
+    ) => {
       return addTokenToRequest(headers, { getState })
     },
   }),
