@@ -23,12 +23,13 @@ export const Courses = createApi({
     "CoursesTypeValid",
     "UserSelectedTypeValid",
   ],
-  keepUnusedDataFor: 30,
+
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath]
     }
   },
+
   endpoints: (builder) => ({
     postAlphaBets: builder.mutation<AlphaBetTypeValid[], number>({
       query: (data) => ({
@@ -43,6 +44,7 @@ export const Courses = createApi({
         url: `/api/courses/alphabets/${getall}`,
         method: "GET",
       }),
+
       providesTags: ["AlphaBetTypeValid"],
     }),
     postCharacters: builder.mutation<CharacterTypeValid[], number>({
@@ -58,6 +60,7 @@ export const Courses = createApi({
         url: `/api/courses/characters/${getall}`,
         method: "GET",
       }),
+
       providesTags: ["CharacterTypeValid"],
     }),
     postLessons: builder.mutation<CoursesTypeValid[], {}>({
@@ -73,6 +76,7 @@ export const Courses = createApi({
         url: `/api/courses/lessons/${getall}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 1,
       providesTags: ["CharacterTypeValid"],
     }),
     postUserSelected: builder.mutation<UserSelectedTypeValid[], {}>({
@@ -96,6 +100,7 @@ export const Courses = createApi({
         url: `/api/courses/lessons/userselected/${getone}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 1,
       providesTags: ["UserSelectedTypeValid"],
     }),
   }),
