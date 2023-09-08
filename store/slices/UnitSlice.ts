@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import BASE_URL from "@/utils/baseUrl"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
 import { addTokenToRequest } from "./Token"
 
@@ -22,6 +22,7 @@ export const units = createApi({
     },
   }),
   refetchOnFocus: true,
+  refetchOnMountOrArgChange: 2,
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath]

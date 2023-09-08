@@ -6,12 +6,15 @@ import {
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 type Props = {
   course: AlphaBetTypeValid
 }
 
 const CoursesCard = (props: Props) => {
+  const router = useRouter()
+
   const { data: session } = useSession()
   const [addNewLesson] = usePostLessonsMutation()
   const [addUserSelectedCourse] = usePostUserSelectedMutation()
@@ -22,17 +25,35 @@ const CoursesCard = (props: Props) => {
 
       isSelected: props.course.id,
     })
+      .then(() => {
+        router.refresh()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
     addUserSelectedCourse({
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
+      .then(() => {
+        router.refresh()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
     addNewLesson({
       alphabet_id: props.course.id,
       user_id: session?.user?.id,
       isSelected: props.course.id,
     })
+      .then(() => {
+        router.refresh()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   return (
     <div

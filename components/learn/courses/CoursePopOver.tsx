@@ -6,6 +6,7 @@ import {
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 type Props = {
   isopen: boolean
@@ -15,12 +16,16 @@ const CoursePopOver = (props: Props) => {
   const { data: courses } = useGetAlphaBetsQuery("getall")
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const { data: session } = useSession()
+  const router = useRouter()
 
   const handleClick = (id: number | undefined) => {
     updateSelectedCourse({
       user_id: session?.user?.id,
 
       isSelected: id,
+    }).then(() => {
+      router.refresh()
+      router.prefetch("/api/units")
     })
   }
 

@@ -3,13 +3,11 @@ import { NextResponse } from "next/server"
 import { options } from "../auth/[...nextauth]/options"
 
 import { prisma } from "@/lib/prisma"
-import { revalidatePath } from "next/cache"
 
 // using next js 13 api routes, send post request to create user with prisma
 export async function GET() {
   try {
     const session = await getServerSession(options)
-
     if (!session) {
       return NextResponse.json(
         {
@@ -27,17 +25,15 @@ export async function GET() {
         isSelected: true,
       },
     })
-    revalidatePath("/learn")
-    if (userSelectedCourse?.isSelected) {
-      const units = await prisma.unit.findMany({
-        where: { alphabets_id: userSelectedCourse?.isSelected },
-        orderBy: {
-          id: "asc",
-        },
-      })
-      return NextResponse.json({
-        units,
-      })
+    const units = await prisma.unit.findMany({
+      where: { alphabets_id: userSelectedCourse?.isSelected },
+      orderBy: {
+        id: "asc",
+      },
+    })
+    console.log("👀👏💋", units)
+    if (units) {
+      return NextResponse.json({ units })
     }
   } catch (error) {
     // You might want to return a proper response in case of an error

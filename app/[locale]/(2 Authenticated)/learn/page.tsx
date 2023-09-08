@@ -4,15 +4,15 @@ import { LeftBar } from "@/components/learn/LeftBar"
 import { RightBar } from "@/components/learn/RightBar"
 import { TopBar } from "@/components/learn/TopBar"
 import UnitSection from "@/components/learn/home/UnitSection"
-import { type NextPage } from "next"
-import React, { useEffect, useState } from "react"
-import { useGetUnitsQuery } from "@/store/slices/UnitSlice"
 import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
+import { useGetUnitsQuery } from "@/store/slices/UnitSlice"
+import { type NextPage } from "next"
 import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 // This component displays the units and sections for the user to learn
 const Learn: NextPage = () => {
-  const { data: unitz } = useGetUnitsQuery<any>()
+  const { data: unitz, refetch } = useGetUnitsQuery<any>()
   const { data: sections } = useGetSectionsQuery<any>()
   const { locale } = useParams()
   // TODO: Send "sectionCompletedStatus" to unitSection component, it could be "LOCKED" or "COMPLETE". Show "ACTIVE" only when the user hasn't started anything, only on the first one
@@ -22,9 +22,9 @@ const Learn: NextPage = () => {
   useEffect(() => {
     if (
       unitz?.units &&
-      unitz.units.length > 0 &&
+      unitz?.units?.length > 0 &&
       sections?.sections &&
-      sections.sections.length > 0
+      sections?.sections?.length > 0
     ) {
       let unitNumber = 0
       const formattedUnits = unitz?.units.map((unit: any) => {
@@ -48,7 +48,7 @@ const Learn: NextPage = () => {
       })
       setFormattedData(formattedUnits)
     }
-  }, [unitz, sections])
+  }, [unitz?.units, sections])
 
   let learnName: any = "Learn"
   if (locale == "so") {
