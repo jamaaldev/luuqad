@@ -1,8 +1,9 @@
+import { getServerSession } from "next-auth/next"
 import { NextResponse } from "next/server"
 import { options } from "../auth/[...nextauth]/options"
-import { getServerSession } from "next-auth/next"
 
 import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
 
 // using next js 13 api routes, send post request to create user with prisma
 export async function GET() {
@@ -20,15 +21,24 @@ export async function GET() {
     }
 
     // Get all lessons
-    const units = await prisma.unit.findMany({
-      orderBy: {
-        id: "asc",
+    const userSelectedCourse = await prisma.userSelected.findFirst({
+      where: { user_id: Number(session?.user?.id) },
+      select: {
+        isSelected: true,
       },
     })
-
-    return NextResponse.json({
-      units,
-    })
+    revalidatePath("/learn")
+    if (userSelectedCourse?.isSelected) {
+      const units = await prisma.unit.findMany({
+        where: { alphabets_id: userSelectedCourse?.isSelected },
+        orderBy: {
+          id: "asc",
+        },
+      })
+      return NextResponse.json({
+        units,
+      })
+    }
   } catch (error) {
     // You might want to return a proper response in case of an error
     return NextResponse.json(

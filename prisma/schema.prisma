@@ -44,7 +44,11 @@ model Unit {
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
   sections    Section[]
-  
+  alphabets_id Int
+
+  alphabets AlphaBets @relation(fields: [alphabets_id],references: [id])
+
+  @@index([alphabets_id])
 
 }
 
@@ -170,6 +174,7 @@ model AlphaBets {
   Direction String @unique
   UserCourses UserCourses []
   Character Characters[]
+  Unit Unit[]
 }
 
 model Characters {
