@@ -3,29 +3,29 @@ import {
   useGetAlphaBetsQuery,
   useUpdateUserSelectedMutation,
 } from "@/store/slices/Courses"
+import { userSelectedCourse } from "@/store/slices/CoursesSlice"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
 
 type Props = {
   isopen: boolean
 }
 
 const CoursePopOver = (props: Props) => {
+  const dispatch = useDispatch()
   const { data: courses } = useGetAlphaBetsQuery("getall")
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const { data: session } = useSession()
-  const router = useRouter()
 
-  const handleClick = (id: number | undefined) => {
+  const handleClick = (id: number | undefined, langauge: string) => {
     updateSelectedCourse({
       user_id: session?.user?.id,
 
       isSelected: id,
     }).then(() => {
-      router.refresh()
-      router.prefetch("/api/units")
+      dispatch(userSelectedCourse(langauge))
     })
   }
 
@@ -39,7 +39,7 @@ const CoursePopOver = (props: Props) => {
           {courses?.map((course) => (
             <div
               key={course.id}
-              onClick={() => handleClick(course?.id)}
+              onClick={() => handleClick(course?.id, course.Langauge)}
               className='flex items-center gap-3 border-b-2 p-3 cursor-pointer hover:bg-slate-50'>
               <Image
                 width={35}

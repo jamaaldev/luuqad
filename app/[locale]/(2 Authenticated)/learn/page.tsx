@@ -5,27 +5,51 @@ import { RightBar } from "@/components/learn/RightBar"
 import { TopBar } from "@/components/learn/TopBar"
 import UnitSection from "@/components/learn/home/UnitSection"
 import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
-import { useGetUnitsQuery } from "@/store/slices/UnitSlice"
 import { type NextPage } from "next"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+
+// const getUnit = async () => {
+//   const unit = await fetch(`/api/units`)
+//   if (!unit.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error("Failed to fetch data")
+//   }
+//   return unit.json()
+// }
+
+const fetcher = (...args: any[]) =>
+  fetch([...args] as any).then((res) => res.json())
 
 // This component displays the units and sections for the user to learn
 const Learn: NextPage = () => {
-  const { data: unitz, refetch } = useGetUnitsQuery<any>()
+  // const { data: unitz, refetch } = useGetUnitsQuery<any>()
   const { data: sections } = useGetSectionsQuery<any>()
   const { locale } = useParams()
+  const isSelected = useSelector((state: any) => state.courses.isSelected)
+
   // TODO: Send "sectionCompletedStatus" to unitSection component, it could be "LOCKED" or "COMPLETE". Show "ACTIVE" only when the user hasn't started anything, only on the first one
 
   const [formattedData, setFormattedData] = useState<any>([])
+  const [unitz, setUnitz] = useState<any>()
 
   useEffect(() => {
-    if (
-      unitz?.units &&
-      unitz?.units?.length > 0 &&
-      sections?.sections &&
-      sections?.sections?.length > 0
-    ) {
+    const getUnit = async () => {
+      const unit = await fetch(`/api/units`)
+      if (!unit.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data")
+      }
+      setUnitz(await unit.json())
+      // return unit.json()
+    }
+
+    getUnit()
+  }, [isSelected])
+
+  useEffect(() => {
+    if (unitz && sections?.sections && sections?.sections?.length > 0) {
       let unitNumber = 0
       const formattedUnits = unitz?.units.map((unit: any) => {
         const formattedSections = sections?.sections
@@ -48,7 +72,7 @@ const Learn: NextPage = () => {
       })
       setFormattedData(formattedUnits)
     }
-  }, [unitz?.units, sections])
+  }, [sections, unitz])
 
   let learnName: any = "Learn"
   if (locale == "so") {

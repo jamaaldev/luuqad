@@ -21,7 +21,7 @@ export const units = createApi({
       return addTokenToRequest(headers, { getState })
     },
   }),
-  refetchOnFocus: true,
+
   refetchOnMountOrArgChange: 2,
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {

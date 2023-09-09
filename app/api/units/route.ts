@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 import { options } from "../auth/[...nextauth]/options"
 
 import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
 
 // using next js 13 api routes, send post request to create user with prisma
 export async function GET() {
@@ -35,6 +36,7 @@ export async function GET() {
     if (units) {
       return NextResponse.json({ units })
     }
+    revalidatePath("/")
   } catch (error) {
     // You might want to return a proper response in case of an error
     return NextResponse.json(

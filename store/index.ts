@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/dist/query"
 import { answers } from "./slices/AnswerSlice"
 import { Courses } from "./slices/Courses"
+import coursesReducer from "./slices/CoursesSlice"
 import { leaderboard } from "./slices/LeaderBoardSlice"
 import { points } from "./slices/PointSlice"
 import { questions } from "./slices/QuestionSlice"
@@ -9,7 +10,6 @@ import { results } from "./slices/ResultSlice"
 import { sections } from "./slices/SectionSlice"
 import { units } from "./slices/UnitSlice"
 import { user } from "./slices/UserSlice"
-
 export const store = configureStore({
   reducer: {
     [units.reducerPath]: units.reducer,
@@ -21,6 +21,7 @@ export const store = configureStore({
     [points.reducerPath]: points.reducer,
     [leaderboard.reducerPath]: leaderboard.reducer,
     [Courses.reducerPath]: Courses.reducer,
+    courses: coursesReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
