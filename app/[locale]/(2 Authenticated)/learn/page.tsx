@@ -6,14 +6,14 @@ import { TopBar } from "@/components/learn/TopBar"
 import UnitSection from "@/components/learn/home/UnitSection"
 import { useAppSelector } from "@/lib/hooks/userSelected"
 import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
+import { useGetUnitsQuery } from "@/store/slices/UnitSlice"
 import { type NextPage } from "next"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
-export const revalidate = 3600 // revalidate at most every hour
 
 // This component displays the units and sections for the user to learn
 const Learn: NextPage = () => {
-  // const { data: unitz, refetch } = useGetUnitsQuery<any>()
+  const { data: unitz, refetch } = useGetUnitsQuery<any>()
   const { data: sections } = useGetSectionsQuery<any>()
   const { locale } = useParams()
   const isSelected = useAppSelector((state) => state.courses.isSelected)
@@ -21,23 +21,9 @@ const Learn: NextPage = () => {
   // TODO: Send "sectionCompletedStatus" to unitSection component, it could be "LOCKED" or "COMPLETE". Show "ACTIVE" only when the user hasn't started anything, only on the first one
 
   const [formattedData, setFormattedData] = useState<any>([])
-  const [unitz, setUnitz] = useState<any>()
 
   useEffect(() => {
-    const getUnit = async () => {
-      const unit = await fetch(`/api/units`)
-      if (!unit.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error("Failed to fetch data")
-      }
-      setUnitz(await unit.json())
-      // return unit.json()
-    }
-
-    getUnit()
-  }, [isSelected])
-
-  useEffect(() => {
+    refetch()
     if (unitz && sections?.sections && sections?.sections?.length > 0) {
       let unitNumber = 0
       const formattedUnits = unitz?.units.map((unit: any) => {
@@ -61,7 +47,7 @@ const Learn: NextPage = () => {
       })
       setFormattedData(formattedUnits)
     }
-  }, [sections, unitz])
+  }, [sections, unitz, isSelected])
 
   let learnName: any = "Learn"
   if (locale == "so") {

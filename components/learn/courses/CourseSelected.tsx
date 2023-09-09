@@ -36,8 +36,10 @@ const CourseSelected = () => {
             priority={true}
             width={50}
             height={50}
-            src={`/svg/${selectedCourse?.Langauge || undefined}.svg`}
-            alt={selectedCourse?.Langauge || "langauge"}
+            src={`/svg/${
+              selectedCourse?.Langauge.toLocaleLowerCase() || undefined
+            }.svg`}
+            alt={selectedCourse?.Langauge.toLocaleLowerCase() || "langauge"}
           />
         </button>
 

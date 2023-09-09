@@ -44,10 +44,12 @@ const CoursePopOver = (props: Props) => {
               <Image
                 width={30}
                 height={30}
-                src={`/svg/${course?.Langauge || "undefined"}.svg`}
-                alt={course?.Langauge || "langauge"}
+                src={`/svg/${
+                  course?.Langauge.toLocaleLowerCase() || "undefined"
+                }.svg`}
+                alt={course?.Langauge.toLocaleLowerCase() || "langauge"}
               />
-              <span>{course?.Langauge}</span>
+              <span>{course?.Langauge.toLocaleLowerCase()}</span>
             </div>
           ))}
 
