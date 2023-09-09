@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/dist/query"
+import { Courses } from "./api/Courses"
 import { answers } from "./slices/AnswerSlice"
-import { Courses } from "./slices/Courses"
 import coursesReducer from "./slices/CoursesSlice"
 import { leaderboard } from "./slices/LeaderBoardSlice"
 import { points } from "./slices/PointSlice"

@@ -1,7 +1,7 @@
 import {
   useGetAlphaBetsQuery,
   useGetUserSelectedQuery,
-} from "@/store/slices/Courses"
+} from "@/store/api/Courses"
 import Image from "next/image"
 import { useState } from "react"
 import CoursePopOver from "./CoursePopOver"

@@ -1,5 +1,5 @@
 "use client"
-import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
+import { useGetAlphaBetsQuery } from "@/store/api/Courses"
 import baseUrl from "@/utils/baseUrl"
 import {
   CharacterSchemaValid,

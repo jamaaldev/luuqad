@@ -2,7 +2,7 @@ import {
   usePostLessonsMutation,
   usePostUserSelectedMutation,
   useUpdateUserSelectedMutation,
-} from "@/store/slices/Courses"
+} from "@/store/api/Courses"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { useSession } from "next-auth/react"
 import Image from "next/image"

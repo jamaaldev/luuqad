@@ -1,4 +1,4 @@
-import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
+import { useGetAlphaBetsQuery } from "@/store/api/Courses"
 import CoursesCard from "./CoursesCard"
 
 const CoursesList = () => {

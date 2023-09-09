@@ -2,14 +2,15 @@ import BASE_URL from "@/utils/baseUrl"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { CharacterTypeValid } from "@/validations/CharacterValid"
 import { CoursesTypeValid } from "@/validations/CoursesIsValid"
+import { UserSelectedUnitTypeValid } from "@/validations/UserSelectedUnitIsValid"
 import {
   BaseQueryApi,
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react"
 import { HYDRATE } from "next-redux-wrapper"
-import { UserSelectedTypeValid } from "./../../validations/UserSelectedIsValid"
-import { addTokenToRequest } from "./Token"
+import { UserSelectedTypeValid } from "../../validations/UserSelectedIsValid"
+import { addTokenToRequest } from "../slices/Token"
 
 export const Courses = createApi({
   reducerPath: "coursesApi",
@@ -34,6 +35,7 @@ export const Courses = createApi({
     "CharacterTypeValid",
     "CoursesTypeValid",
     "UserSelectedTypeValid",
+    "UserSelectedUnitTypeValid",
   ],
 
   extractRehydrationInfo(action, { reducerPath }) {
@@ -115,6 +117,14 @@ export const Courses = createApi({
       keepUnusedDataFor: 1,
       providesTags: ["UserSelectedTypeValid"],
     }),
+    getUserSelectedUnit: builder.query<UserSelectedUnitTypeValid[], void>({
+      query: () => ({
+        url: `/api/courses/lessons/userselected/unit`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 1,
+      providesTags: ["UserSelectedUnitTypeValid"],
+    }),
   }),
 })
 
@@ -128,4 +138,5 @@ export const {
   usePostUserSelectedMutation,
   useGetUserSelectedQuery,
   useUpdateUserSelectedMutation,
+  useGetUserSelectedUnitQuery,
 } = Courses

@@ -5,15 +5,15 @@ import { RightBar } from "@/components/learn/RightBar"
 import { TopBar } from "@/components/learn/TopBar"
 import UnitSection from "@/components/learn/home/UnitSection"
 import { useAppSelector } from "@/lib/hooks/userSelected"
+import { useGetUserSelectedUnitQuery } from "@/store/api/Courses"
 import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
-import { useGetUnitsQuery } from "@/store/slices/UnitSlice"
 import { type NextPage } from "next"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 // This component displays the units and sections for the user to learn
 const Learn: NextPage = () => {
-  const { data: unitz, refetch } = useGetUnitsQuery<any>()
+  const { data: unitz, refetch } = useGetUserSelectedUnitQuery()
   const { data: sections } = useGetSectionsQuery<any>()
   const { locale } = useParams()
   const isSelected = useAppSelector((state) => state.courses.isSelected)
@@ -26,7 +26,7 @@ const Learn: NextPage = () => {
     refetch()
     if (unitz && sections?.sections && sections?.sections?.length > 0) {
       let unitNumber = 0
-      const formattedUnits = unitz?.units.map((unit: any) => {
+      const formattedUnits = unitz?.map((unit) => {
         const formattedSections = sections?.sections
           .filter((section: any) => section.unit_id === unit.id) // Assuming you have a way to link sections to units using an id
           .map((section: any) => ({

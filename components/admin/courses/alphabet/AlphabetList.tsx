@@ -1,6 +1,6 @@
 "use client"
 
-import { useGetAlphaBetsQuery } from "@/store/slices/Courses"
+import { useGetAlphaBetsQuery } from "@/store/api/Courses"
 import Link from "next/link"
 
 const AlphabetList = () => {

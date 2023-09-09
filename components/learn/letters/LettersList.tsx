@@ -1,5 +1,5 @@
 "use client"
-import { useGetLessonsQuery } from "@/store/slices/Courses"
+import { useGetLessonsQuery } from "@/store/api/Courses"
 import Letter from "./Letter"
 
 const LettersList = () => {

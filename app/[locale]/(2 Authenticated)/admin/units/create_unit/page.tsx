@@ -1,22 +1,25 @@
 "use client"
-import React from "react"
-import { useSearchParams, useRouter } from "next/navigation"
-import { Formik, Form, Field } from "formik"
+import { useGetAlphaBetsQuery } from "@/store/api/Courses"
+import { Field, Form, Formik } from "formik"
+import { useRouter, useSearchParams } from "next/navigation"
 import * as Yup from "yup"
 
 interface Values {
   title: string
   description: string
   status: number
+  alphabets_id: number
 }
 
 const CreateUnit = () => {
   const router = useRouter()
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
 
   const initialValues: Values = {
     title: "",
     description: "",
     status: 0,
+    alphabets_id: 0,
   }
 
   const validationSchema = Yup.object({
@@ -34,6 +37,7 @@ const CreateUnit = () => {
         title: values.title,
         description: values.description,
         status: Number(values.status),
+        alphabets_id: Number(values?.alphabets_id),
       }
 
       const res = await fetch("/api/units/create", {
@@ -84,6 +88,30 @@ const CreateUnit = () => {
                   className='relative items-center justify-center block px-3 px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
                   placeholder='Description'
                 />
+                <div className='mt-5 relative'>
+                  <label htmlFor='alphabets_id'>
+                    Ex: ( En_So ) Language --{">"} English Transliteration --
+                    {">"} Somali.
+                  </label>
+                  <Field
+                    component='select'
+                    name='alphabets_id'
+                    id='alphabets_id'
+                    autoComplete='none'
+                    required
+                    className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
+                    placeholder='Please Select alphabets_id'>
+                    <option value=''>Please Select alphabets_id</option>
+
+                    {alphabetsGetAllDirection?.map((data) => (
+                      <option key={data.id} value={data.id}>
+                        {data.Direction}
+                      </option>
+                    ))}
+
+                    {/* <option value='So_En'>So_En</option> */}
+                  </Field>
+                </div>
                 <div className='mt-5 relative'>
                   <Field
                     as='select'

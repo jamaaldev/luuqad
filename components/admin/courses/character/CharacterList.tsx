@@ -1,6 +1,6 @@
 "use client"
 
-import { useGetCharactersQuery } from "@/store/slices/Courses"
+import { useGetCharactersQuery } from "@/store/api/Courses"
 import Link from "next/link"
 
 const CharacterList = () => {

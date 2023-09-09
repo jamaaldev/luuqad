@@ -2,7 +2,7 @@ import LuuqadIconX from "@/components/icons/LuuqadIconX"
 import {
   useGetAlphaBetsQuery,
   useUpdateUserSelectedMutation,
-} from "@/store/slices/Courses"
+} from "@/store/api/Courses"
 import { userSelectedCourse } from "@/store/slices/CoursesSlice"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
