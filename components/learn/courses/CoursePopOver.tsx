@@ -39,15 +39,15 @@ const CoursePopOver = (props: Props) => {
           {courses?.map((course) => (
             <div
               key={course.id}
-              onClick={() => handleClick(course?.id, course.Langauge)}
+              onClick={() => handleClick(course?.id, course?.Langauge)}
               className='flex items-center gap-3 border-b-2 p-3 cursor-pointer hover:bg-slate-50'>
               <Image
-                width={35}
+                width={30}
                 height={30}
-                src={`/svg/${course.Langauge}.svg`}
-                alt={course.Langauge}
+                src={`/svg/${course?.Langauge || "undefined"}.svg`}
+                alt={course?.Langauge || "langauge"}
               />
-              <span>{course.Langauge}</span>
+              <span>{course?.Langauge}</span>
             </div>
           ))}
 

@@ -9,18 +9,7 @@ import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
 import { type NextPage } from "next"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
-
-// const getUnit = async () => {
-//   const unit = await fetch(`/api/units`)
-//   if (!unit.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error("Failed to fetch data")
-//   }
-//   return unit.json()
-// }
-
-const fetcher = (...args: any[]) =>
-  fetch([...args] as any).then((res) => res.json())
+export const revalidate = 3600 // revalidate at most every hour
 
 // This component displays the units and sections for the user to learn
 const Learn: NextPage = () => {
