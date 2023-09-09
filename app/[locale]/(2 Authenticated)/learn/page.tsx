@@ -4,11 +4,11 @@ import { LeftBar } from "@/components/learn/LeftBar"
 import { RightBar } from "@/components/learn/RightBar"
 import { TopBar } from "@/components/learn/TopBar"
 import UnitSection from "@/components/learn/home/UnitSection"
+import { useAppSelector } from "@/lib/hooks/hook"
 import { useGetSectionsQuery } from "@/store/slices/SectionSlice"
 import { type NextPage } from "next"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
 
 // const getUnit = async () => {
 //   const unit = await fetch(`/api/units`)
@@ -27,7 +27,7 @@ const Learn: NextPage = () => {
   // const { data: unitz, refetch } = useGetUnitsQuery<any>()
   const { data: sections } = useGetSectionsQuery<any>()
   const { locale } = useParams()
-  const isSelected = useSelector((state: any) => state.courses.isSelected)
+  const isSelected = useAppSelector((state) => state.courses.isSelected)
 
   // TODO: Send "sectionCompletedStatus" to unitSection component, it could be "LOCKED" or "COMPLETE". Show "ACTIVE" only when the user hasn't started anything, only on the first one
 
