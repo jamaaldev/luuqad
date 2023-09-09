@@ -1,16 +1,3 @@
-import { Fragment, useCallback, useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import type { Unit, Section, SectionType } from "@/utils/units"
-import SectionToolTip from "./SectionToolTip"
-import HoverLabel from "./HoverLabel"
-import UnitHeader from "./UnitHeader"
-import { units } from "@/utils/units"
-import {
-  LessonCompletionSvg0,
-  LessonCompletionSvg1,
-  LessonCompletionSvg2,
-  LessonCompletionSvg3,
-} from "@/components/SVGs"
 import {
   ActiveBookSvg,
   ActiveDumbbellSvg,
@@ -22,6 +9,10 @@ import {
   GoldenDumbbellSvg,
   GoldenTreasureSvg,
   GoldenTrophySvg,
+  LessonCompletionSvg0,
+  LessonCompletionSvg1,
+  LessonCompletionSvg2,
+  LessonCompletionSvg3,
   LockSvg,
   LockedBookSvg,
   LockedDumbbellSvg,
@@ -29,6 +20,13 @@ import {
   LockedTrophySvg,
   StarSvg,
 } from "@/components/SVGs"
+import type { Section, SectionType, Unit } from "@/utils/units"
+import { units } from "@/utils/units"
+import { useRouter } from "next/navigation"
+import { Fragment, useCallback, useEffect, useState } from "react"
+import HoverLabel from "./HoverLabel"
+import SectionToolTip from "./SectionToolTip"
+import UnitHeader from "./UnitHeader"
 
 type SectionStatus = "LOCKED" | "ACTIVE" | "COMPLETE"
 
