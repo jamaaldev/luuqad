@@ -5,11 +5,11 @@ export const AlphaBetSchemaValid = yup.object({
   SubTitle: yup.string().required(),
   Langauge: yup.string().required(),
   Translate: yup.string().required(),
-  Direction: yup.string(),
 })
 
 export interface AlphaBetTypeValid
   extends yup.InferType<typeof AlphaBetSchemaValid> {
   // using interface instead of type generally gives nicer editor feedback
+  Direction: string
   id?: number
 }

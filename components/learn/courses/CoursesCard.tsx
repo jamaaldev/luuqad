@@ -45,7 +45,7 @@ const CoursesCard = (props: Props) => {
       <button>
         {userCourses?.map((selected) =>
           selected.Alphabets?.id === props.course.id ? (
-            <LuuqadIconHeart width={50} />
+            <LuuqadIconHeart key={selected.Alphabets?.id} width={50} />
           ) : (
             ""
           ),

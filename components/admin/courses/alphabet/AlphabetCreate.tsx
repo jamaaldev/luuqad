@@ -13,6 +13,7 @@ const AlphabetCreate = () => {
     SubTitle: "",
     Langauge: "",
     Translate: "",
+    Direction: "",
   }
 
   const onSubmit = async (values: AlphaBetTypeValid) => {
@@ -23,10 +24,6 @@ const AlphabetCreate = () => {
         .concat(values.Langauge.slice(1, 2))}_${values.Translate.slice(0, 1)
         .toLocaleUpperCase()
         .concat(values.Translate.slice(1, 2))}`
-      console.log(
-        "🚀 ~ file: AlphabetCreate.tsx:22 ~ onSubmit ~ direction:",
-        direction,
-      )
 
       console.log("✨", values.Langauge, values.Translate)
       try {
