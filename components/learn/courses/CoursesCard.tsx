@@ -5,20 +5,24 @@ import {
   usePostUserSelectedMutation,
   useUpdateUserSelectedMutation,
 } from "@/store/api/Courses"
+import { userSelectedCourse } from "@/store/slices/CoursesSlice"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
 
 type Props = {
   course: AlphaBetTypeValid
 }
 
 const CoursesCard = (props: Props) => {
+  const dispatch = useDispatch()
   const { data: session } = useSession()
   const [addNewLesson] = usePostLessonsMutation()
   const [addUserSelectedCourse] = usePostUserSelectedMutation()
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
-  const { data: userCourses } = useGetUserSelectedCoursesQuery()
+  const { data: userCourses, refetch } = useGetUserSelectedCoursesQuery()
   const handleClick = () => {
     updateSelectedCourse({
       user_id: session?.user?.id,
@@ -34,6 +38,10 @@ const CoursesCard = (props: Props) => {
     addNewLesson({
       user_id: session?.user?.id,
       alphaBetsCourses_id: props.course.id,
+    }).then(() => {
+      toast.success("SuccessFully Enrolled")
+      refetch()
+      dispatch(userSelectedCourse(props.course.Langauge))
     })
   }
   return (
