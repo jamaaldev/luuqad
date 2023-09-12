@@ -18,21 +18,20 @@ export async function POST(req: NextRequest) {
         { status: 401 },
       )
     }
-    const newLessons: CoursesTypeValid = await req.json()
+    const newAlphabetCourse: CoursesTypeValid = await req.json()
     // check 2 filter and return value or null
     const UserCourseExist: CoursesTypeValid | null =
       await prisma.userCourses.findFirst({
         where: {
           AND: [
-            { user_id: newLessons.user_id },
-            { alphabet_id: newLessons.alphabet_id },
+            { user_id: newAlphabetCourse.user_id },
+            { alphaBetsCourses_id: newAlphabetCourse.alphaBetsCourses_id },
           ],
         },
 
         select: {
           user_id: true,
-          alphabet_id: true,
-          isSelected: true,
+          alphaBetsCourses_id: true,
         },
       })
 
@@ -46,7 +45,7 @@ export async function POST(req: NextRequest) {
       )
     }
     await prisma.userCourses.create({
-      data: newLessons,
+      data: newAlphabetCourse,
     })
     return NextResponse.json(
       {

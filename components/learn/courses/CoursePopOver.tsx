@@ -24,7 +24,7 @@ const CoursePopOver = (props: Props) => {
     updateSelectedCourse({
       user_id: session?.user?.id,
 
-      isSelected: id,
+      isSelectedAlphabetCourse_id: id,
     }).then(() => {
       refetch()
       dispatch(userSelectedCourse(langauge))
@@ -40,22 +40,29 @@ const CoursePopOver = (props: Props) => {
           </div>
           {userCourses?.map((course) => (
             <div
-              key={course?.Alphabets?.id}
+              key={course?.AlphaBetsCourses?.id}
               onClick={() =>
-                handleClick(course?.Alphabets?.id, course?.Alphabets?.Langauge!)
+                handleClick(
+                  course?.AlphaBetsCourses?.id,
+                  course?.AlphaBetsCourses?.Langauge!,
+                )
               }
               className='flex items-center gap-3 border-b-2 p-3 cursor-pointer hover:bg-slate-50'>
               <Image
                 width={30}
                 height={30}
                 src={`/svg/${
-                  course?.Alphabets?.Langauge.toLocaleLowerCase() || "undefined"
+                  course?.AlphaBetsCourses?.Langauge.toLocaleLowerCase() ||
+                  "undefined"
                 }.svg`}
                 alt={
-                  course?.Alphabets?.Langauge.toLocaleLowerCase() || "langauge"
+                  course?.AlphaBetsCourses?.Langauge.toLocaleLowerCase() ||
+                  "langauge"
                 }
               />
-              <span>{course?.Alphabets?.Langauge.toLocaleLowerCase()}</span>
+              <span>
+                {course?.AlphaBetsCourses?.Langauge.toLocaleLowerCase()}
+              </span>
             </div>
           ))}
 

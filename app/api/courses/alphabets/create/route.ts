@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
       )
     }
     const alphabet: AlphaBetTypeValid = await req.json()
-    await prisma.alphaBets.create({
+    await prisma.alphaBetsCourses.create({
       data: alphabet,
     })
     return NextResponse.json(

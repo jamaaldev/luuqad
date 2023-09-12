@@ -25,7 +25,9 @@ CREATE TABLE `Unit` (
     `status` INTEGER NOT NULL DEFAULT 0,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
+    `alphaBetsCourses_id` INTEGER NOT NULL,
 
+    INDEX `Unit_alphaBetsCourses_id_idx`(`alphaBetsCourses_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -132,7 +134,7 @@ CREATE TABLE `UserSection` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `AlphaBets` (
+CREATE TABLE `AlphaBetsCourses` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Title` VARCHAR(191) NOT NULL,
     `SubTitle` VARCHAR(191) NOT NULL,
@@ -140,8 +142,8 @@ CREATE TABLE `AlphaBets` (
     `Translate` VARCHAR(191) NOT NULL,
     `Direction` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `AlphaBets_id_key`(`id`),
-    UNIQUE INDEX `AlphaBets_Direction_key`(`Direction`),
+    UNIQUE INDEX `AlphaBetsCourses_id_key`(`id`),
+    UNIQUE INDEX `AlphaBetsCourses_Direction_key`(`Direction`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -163,9 +165,20 @@ CREATE TABLE `Characters` (
 CREATE TABLE `UserCourses` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `user_id` INTEGER NOT NULL,
-    `alphabet_id` INTEGER NOT NULL,
-    `isSelected` BOOLEAN NOT NULL,
+    `alphaBetsCourses_id` INTEGER NOT NULL,
 
     UNIQUE INDEX `UserCourses_id_key`(`id`),
-    INDEX `UserCourses_alphabet_id_idx`(`alphabet_id`)
+    INDEX `UserCourses_user_id_idx`(`user_id`),
+    INDEX `UserCourses_alphaBetsCourses_id_idx`(`alphaBetsCourses_id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `UserSelected` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `user_id` INTEGER NOT NULL,
+    `isSelectedAlphabetCourse` INTEGER NOT NULL,
+
+    UNIQUE INDEX `UserSelected_id_key`(`id`),
+    UNIQUE INDEX `UserSelected_user_id_key`(`user_id`),
+    INDEX `UserSelected_user_id_idx`(`user_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

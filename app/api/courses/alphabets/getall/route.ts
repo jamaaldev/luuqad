@@ -16,7 +16,7 @@ export async function GET() {
       )
     }
 
-    const alphabetsGetAllDirection = await prisma.alphaBets.findMany({
+    const alphabetsGetAllDirection = await prisma.alphaBetsCourses.findMany({
       select: {
         id: true,
         Title: true,

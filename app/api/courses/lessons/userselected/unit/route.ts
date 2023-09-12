@@ -22,11 +22,13 @@ export async function GET() {
     const userSelectedCourse = await prisma.userSelected.findFirst({
       where: { user_id: Number(session?.user?.id) },
       select: {
-        isSelected: true,
+        isSelectedAlphabetCourse_id: true,
       },
     })
     const units = await prisma.unit.findMany({
-      where: { alphabets_id: userSelectedCourse?.isSelected },
+      where: {
+        alphaBetsCourses_id: userSelectedCourse?.isSelectedAlphabetCourse_id,
+      },
       orderBy: {
         id: "asc",
       },

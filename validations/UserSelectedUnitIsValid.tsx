@@ -7,7 +7,7 @@ export const UserSelectedUnitSchemaValid = yup.object({
   status: yup.number().required(),
   created_at: yup.date(),
   updated_at: yup.date(),
-  alphabets_id: yup.number().required(),
+  alphaBetsCourses_id: yup.number().required(),
 })
 
 export interface UserSelectedUnitTypeValid

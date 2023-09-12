@@ -24,7 +24,7 @@ export async function GET() {
         select: {
           id: true,
           user_id: true,
-          isSelected: true,
+          isSelectedAlphabetCourse_id: true,
         },
       })
 

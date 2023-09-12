@@ -11,7 +11,8 @@ const CourseSelected = () => {
   const { data: userselected } = useGetUserSelectedQuery("getone")
 
   const selectedCourse = usercourses?.find(
-    (course) => course && course.id === userselected?.isSelected,
+    (course) =>
+      course && course.id === userselected?.isSelectedAlphabetCourse_id,
   )
   // const userSelectedCourse = () => {}
   const [isopen, SetOpen] = useState(false)

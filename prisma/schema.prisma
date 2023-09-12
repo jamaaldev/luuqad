@@ -22,7 +22,8 @@ model User {
   created_at     DateTime   @default(now())
   updated_at     DateTime   @updatedAt
  
-
+  UserCourses  UserCourses[]
+  UserSelected  UserSelected[]
   UserSection    UserSection[]
   Point        Point[]
   Result         Result[]
@@ -44,11 +45,11 @@ model Unit {
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
   sections    Section[]
-  alphabets_id Int
+  alphaBetsCourses_id Int
 
-  alphabets AlphaBets @relation(fields: [alphabets_id],references: [id])
+  AlphaBetsCourses AlphaBetsCourses @relation(fields: [alphaBetsCourses_id],references: [id])
 
-  @@index([alphabets_id])
+  @@index([alphaBetsCourses_id])
 
 }
 
@@ -165,7 +166,7 @@ model UserSection {
   @@index([section_id])
 }
 
-model AlphaBets {
+model AlphaBetsCourses {
   id Int @id @unique @default(autoincrement())
   Title String
   SubTitle String
@@ -188,7 +189,7 @@ Direction_fk String
 
 
 
-Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
+AlphaBetsCourses AlphaBetsCourses @relation(fields: [Direction_fk],references: [Direction])
 
 
 @@index([Direction_fk])
@@ -197,19 +198,21 @@ Alphabets AlphaBets @relation(fields: [Direction_fk],references: [Direction])
 model UserCourses {
   id Int @unique @default( autoincrement())
   user_id Int 
-  alphabet_id Int
-  isSelected Int 
-  Alphabets AlphaBets @relation(fields: [alphabet_id],references: [id])
+  alphaBetsCourses_id Int
+  AlphaBetsCourses AlphaBetsCourses @relation(fields: [alphaBetsCourses_id],references: [id])
 
 
+  User User @relation(fields: [user_id],references: [id])
+  @@index([user_id])
 
-  @@index([alphabet_id])
+  @@index([alphaBetsCourses_id])
  
 }
 
 model UserSelected {
   id Int  @unique @default( autoincrement())
   user_id Int @unique
-  isSelected Int 
-
+  isSelectedAlphabetCourse_id Int 
+  User User @relation(fields: [user_id],references: [id])
+  @@index([user_id])
 }

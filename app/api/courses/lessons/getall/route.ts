@@ -22,13 +22,15 @@ export async function GET() {
       select: {
         id: true,
         user_id: true,
-        Alphabets: true,
-        isSelected: true,
+        AlphaBetsCourses: true,
+        alphaBetsCourses_id: true,
       },
     })
     // get all the enroll courses this user only
-    const userAlphabets = await prisma.alphaBets.findMany({
-      where: { id: { in: userCourse.map((course) => course.Alphabets.id) } },
+    const userAlphabetsCourses = await prisma.alphaBetsCourses.findMany({
+      where: {
+        id: { in: userCourse.map((course) => course.AlphaBetsCourses.id) },
+      },
       select: {
         Direction: true,
         id: true,
@@ -41,16 +43,17 @@ export async function GET() {
         select: {
           id: true,
           user_id: true,
-          isSelected: true,
+          isSelectedAlphabetCourse_id: true,
         },
       })
-    const getOne = userAlphabets.filter(
-      (onelesson) => onelesson.id === userSelectedCourse?.isSelected,
+    const getOneCourse = userAlphabetsCourses.filter(
+      (oneCourse) =>
+        oneCourse.id === userSelectedCourse?.isSelectedAlphabetCourse_id,
     )
 
     const getsOneCourse = await prisma.characters.findMany({
       where: {
-        Direction_fk: getOne[0].Direction,
+        Direction_fk: getOneCourse[0].Direction,
       },
 
       select: {

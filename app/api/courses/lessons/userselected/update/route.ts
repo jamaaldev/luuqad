@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       await prisma.userSelected.findFirstOrThrow({
         where: { user_id: userSelected.user_id },
         select: {
-          isSelected: true,
+          isSelectedAlphabetCourse_id: true,
           user_id: true,
           id: true,
         },
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
           user_id: userSelected.user_id,
         },
         data: {
-          isSelected: userSelected.isSelected,
+          isSelectedAlphabetCourse_id: userSelected.isSelectedAlphabetCourse_id,
         },
       })
 

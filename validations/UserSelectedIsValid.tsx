@@ -2,7 +2,7 @@ import * as yup from "yup"
 
 export const UserSelectedSchemaValid = yup.object({
   user_id: yup.number().required(),
-  isSelected: yup.number().required(),
+  isSelectedAlphabetCourse_id: yup.number().required(),
 })
 
 export interface UserSelectedTypeValid
