@@ -101,11 +101,11 @@ const CreateUnit = () => {
                     required
                     className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
                     placeholder='Please Select alphabets_id'>
-                    <option value=''>Please Select alphabets_id</option>
+                    <option value=''>Please Select Direction</option>
 
                     {alphabetsGetAllDirection?.map((data) => (
                       <option key={data.id} value={data.id}>
-                        {data.Direction}
+                        {data.Direction} ➡ {data.Langauge} For {data.Translate}
                       </option>
                     ))}
 

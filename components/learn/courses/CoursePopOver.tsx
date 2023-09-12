@@ -1,6 +1,6 @@
 import LuuqadIconX from "@/components/icons/LuuqadIconX"
 import {
-  useGetAlphaBetsQuery,
+  useGetUserSelectedCoursesQuery,
   useUpdateUserSelectedMutation,
 } from "@/store/api/Courses"
 import { userSelectedCourse } from "@/store/slices/CoursesSlice"
@@ -15,7 +15,8 @@ type Props = {
 
 const CoursePopOver = (props: Props) => {
   const dispatch = useDispatch()
-  const { data: courses } = useGetAlphaBetsQuery("getall")
+  const { data: userCourses } = useGetUserSelectedCoursesQuery()
+
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const { data: session } = useSession()
 
@@ -36,20 +37,24 @@ const CoursePopOver = (props: Props) => {
           <div className='border-b-2 p-3'>
             <h2>My Courses</h2>
           </div>
-          {courses?.map((course) => (
+          {userCourses?.map((course) => (
             <div
-              key={course.id}
-              onClick={() => handleClick(course?.id, course?.Langauge)}
+              key={course?.Alphabets?.id}
+              onClick={() =>
+                handleClick(course?.Alphabets?.id, course?.Alphabets?.Langauge!)
+              }
               className='flex items-center gap-3 border-b-2 p-3 cursor-pointer hover:bg-slate-50'>
               <Image
                 width={30}
                 height={30}
                 src={`/svg/${
-                  course?.Langauge.toLocaleLowerCase() || "undefined"
+                  course?.Alphabets?.Langauge.toLocaleLowerCase() || "undefined"
                 }.svg`}
-                alt={course?.Langauge.toLocaleLowerCase() || "langauge"}
+                alt={
+                  course?.Alphabets?.Langauge.toLocaleLowerCase() || "langauge"
+                }
               />
-              <span>{course?.Langauge.toLocaleLowerCase()}</span>
+              <span>{course?.Alphabets?.Langauge.toLocaleLowerCase()}</span>
             </div>
           ))}
 

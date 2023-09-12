@@ -13,12 +13,22 @@ const AlphabetCreate = () => {
     SubTitle: "",
     Langauge: "",
     Translate: "",
-    Direction: "",
   }
 
   const onSubmit = async (values: AlphaBetTypeValid) => {
     const isValid = await AlphaBetSchemaValid.isValid(values)
     if (isValid === true) {
+      const direction = `${values.Langauge.slice(0, 1)
+        .toLocaleUpperCase()
+        .concat(values.Langauge.slice(1, 2))}_${values.Translate.slice(0, 1)
+        .toLocaleUpperCase()
+        .concat(values.Translate.slice(1, 2))}`
+      console.log(
+        "🚀 ~ file: AlphabetCreate.tsx:22 ~ onSubmit ~ direction:",
+        direction,
+      )
+
+      console.log("✨", values.Langauge, values.Translate)
       try {
         const rest = await fetch(`${baseUrl}/api/courses/alphabets/create`, {
           method: "POST",
@@ -27,7 +37,10 @@ const AlphabetCreate = () => {
 
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify({
+            ...values,
+            Direction: direction,
+          }),
         })
 
         const data = rest
@@ -100,7 +113,7 @@ const AlphabetCreate = () => {
                   className='relative items-center justify-center block px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
                   placeholder='Translate  Ex: Somali'></Field>
               </div>
-              <div className='mt-5 relative'>
+              {/* <div className='mt-5 relative'>
                 <Field
                   type='input'
                   name='Direction'
@@ -108,7 +121,7 @@ const AlphabetCreate = () => {
                   required
                   className='relative items-center justify-center block  px-4 py-3 bg-gray-100 border appearance-none rounded-xl w-96 border-black-299 focus:outline-none ring-2 ring-gray-300'
                   placeholder='Ex: ( En_So )  Language --> English  Translate --> Somali'></Field>
-              </div>
+              </div> */}
             </div>
             <div className='flex flex-col items-center justify-center w-full mt-4 space-y-4 text-center'>
               <button

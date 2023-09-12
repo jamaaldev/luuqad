@@ -2,6 +2,7 @@ import BASE_URL from "@/utils/baseUrl"
 import { AlphaBetTypeValid } from "@/validations/AlphabetIsValid"
 import { CharacterTypeValid } from "@/validations/CharacterValid"
 import { CoursesTypeValid } from "@/validations/CoursesIsValid"
+import { UserSelectedCoursesTypeValid } from "@/validations/UserSelectedCoursesIsValid"
 import { UserSelectedUnitTypeValid } from "@/validations/UserSelectedUnitIsValid"
 import {
   BaseQueryApi,
@@ -36,6 +37,7 @@ export const Courses = createApi({
     "CoursesTypeValid",
     "UserSelectedTypeValid",
     "UserSelectedUnitTypeValid",
+    "UserSelectedCoursesTypeValid",
   ],
 
   extractRehydrationInfo(action, { reducerPath }) {
@@ -125,6 +127,16 @@ export const Courses = createApi({
       keepUnusedDataFor: 1,
       providesTags: ["UserSelectedUnitTypeValid"],
     }),
+    getUserSelectedCourses: builder.query<UserSelectedCoursesTypeValid[], void>(
+      {
+        query: () => ({
+          url: `/api/courses/lessons/userselected/courses`,
+          method: "GET",
+        }),
+        keepUnusedDataFor: 1,
+        providesTags: ["UserSelectedCoursesTypeValid"],
+      },
+    ),
   }),
 })
 
@@ -139,4 +151,5 @@ export const {
   useGetUserSelectedQuery,
   useUpdateUserSelectedMutation,
   useGetUserSelectedUnitQuery,
+  useGetUserSelectedCoursesQuery,
 } = Courses

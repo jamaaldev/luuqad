@@ -5,7 +5,7 @@ export const AlphaBetSchemaValid = yup.object({
   SubTitle: yup.string().required(),
   Langauge: yup.string().required(),
   Translate: yup.string().required(),
-  Direction: yup.string().required(),
+  Direction: yup.string(),
 })
 
 export interface AlphaBetTypeValid
