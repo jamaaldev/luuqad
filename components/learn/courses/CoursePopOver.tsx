@@ -15,7 +15,7 @@ type Props = {
 
 const CoursePopOver = (props: Props) => {
   const dispatch = useDispatch()
-  const { data: userCourses } = useGetUserSelectedCoursesQuery()
+  const { data: userCourses, refetch } = useGetUserSelectedCoursesQuery()
 
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const { data: session } = useSession()
@@ -26,6 +26,7 @@ const CoursePopOver = (props: Props) => {
 
       isSelected: id,
     }).then(() => {
+      refetch()
       dispatch(userSelectedCourse(langauge))
     })
   }
