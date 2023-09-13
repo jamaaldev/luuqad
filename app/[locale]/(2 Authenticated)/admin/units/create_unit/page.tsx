@@ -13,7 +13,7 @@ interface Values {
 
 const CreateUnit = () => {
   const router = useRouter()
-  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery()
 
   const initialValues: Values = {
     title: "",

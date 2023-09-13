@@ -9,7 +9,7 @@ import { Field, Form, Formik } from "formik"
 import Link from "next/link"
 
 const CharacterCreate = () => {
-  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery()
 
   const initialValues: CharacterTypeValid = {
     Character: "",

@@ -4,7 +4,7 @@ import { useGetAlphaBetsQuery } from "@/store/api/Courses"
 import Link from "next/link"
 
 const AlphabetList = () => {
-  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery("getall")
+  const { data: alphabetsGetAllDirection } = useGetAlphaBetsQuery()
 
   return (
     <div>
