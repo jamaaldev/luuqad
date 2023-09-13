@@ -1,3 +1,4 @@
+import { ResponseData } from "@/app/api/courses/lessons/enroll/route"
 import LuuqadIconHeart from "@/components/icons/LuuqadIconHeart"
 import {
   useGetUserSelectedCoursesQuery,
@@ -19,7 +20,7 @@ type Props = {
 const CoursesCard = (props: Props) => {
   const dispatch = useDispatch()
   const { data: session } = useSession()
-  const [addNewLesson] = usePostLessonsMutation()
+  const [enrollNewLesson] = usePostLessonsMutation()
   const [addUserSelectedCourse] = usePostUserSelectedMutation()
   const [updateSelectedCourse] = useUpdateUserSelectedMutation()
   const { data: userCourses, refetch } = useGetUserSelectedCoursesQuery()
@@ -35,14 +36,25 @@ const CoursesCard = (props: Props) => {
       isSelectedAlphabetCourse_id: props.course.id,
     })
 
-    addNewLesson({
+    enrollNewLesson({
       user_id: session?.user?.id,
       alphaBetsCourses_id: props.course.id,
-    }).then(() => {
-      toast.success("SuccessFully Enrolled")
-      refetch()
-      dispatch(userSelectedCourse(props.course.Langauge))
     })
+      .then((data) => {
+        const value: ResponseData = data as ResponseData
+
+        if (value.data.status === 409) {
+          toast.info(value.data?.message)
+        } else {
+          toast.success(value.data?.message)
+          refetch()
+          dispatch(userSelectedCourse(props.course.Langauge))
+        }
+      })
+      .catch((err) => {
+        toast.info("enrollNewLesson Something is Wrong")
+        console.log(err)
+      })
   }
   return (
     <div

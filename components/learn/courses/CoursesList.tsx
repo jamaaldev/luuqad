@@ -6,7 +6,7 @@ import CoursesCard from "./CoursesCard"
 const CoursesList = () => {
   const isSelected = useAppSelector((state) => state.courses.isSelected)
 
-  const { data: alphabetdataCourses, refetch } = useGetAlphaBetsQuery("getall")
+  const { data: alphabetdataCourses, refetch } = useGetAlphaBetsQuery()
 
   useEffect(() => {
     refetch()

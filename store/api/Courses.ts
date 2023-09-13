@@ -55,9 +55,9 @@ export const Courses = createApi({
       }),
       invalidatesTags: ["AlphaBetTypeValid"],
     }),
-    getAlphaBets: builder.query<AlphaBetTypeValid[], string>({
-      query: (getall) => ({
-        url: `/api/courses/alphabets/${getall}`,
+    getAlphaBets: builder.query<AlphaBetTypeValid[], void>({
+      query: () => ({
+        url: `/api/courses/alphabets/getall`,
         method: "GET",
       }),
 
@@ -87,9 +87,9 @@ export const Courses = createApi({
       }),
       invalidatesTags: ["CoursesTypeValid"],
     }),
-    getLessons: builder.query<CharacterTypeValid[], string>({
-      query: (getall) => ({
-        url: `/api/courses/lessons/${getall}`,
+    getLessons: builder.query<CharacterTypeValid[], void>({
+      query: () => ({
+        url: `/api/courses/lessons/getall`,
         method: "GET",
       }),
       keepUnusedDataFor: 1,
@@ -111,9 +111,9 @@ export const Courses = createApi({
       }),
       invalidatesTags: ["UserSelectedTypeValid"],
     }),
-    getUserSelected: builder.query<UserSelectedTypeValid, string>({
-      query: (getone) => ({
-        url: `/api/courses/lessons/userselected/${getone}`,
+    getUserSelected: builder.query<UserSelectedTypeValid, void>({
+      query: () => ({
+        url: `/api/courses/lessons/userselected/getone`,
         method: "GET",
       }),
       keepUnusedDataFor: 1,

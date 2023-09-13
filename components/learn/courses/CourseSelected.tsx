@@ -7,14 +7,14 @@ import { useState } from "react"
 import CoursePopOver from "./CoursePopOver"
 
 const CourseSelected = () => {
-  const { data: usercourses } = useGetAlphaBetsQuery("getall")
-  const { data: userselected } = useGetUserSelectedQuery("getone")
+  const { data: usercourses } = useGetAlphaBetsQuery()
+  const { data: userselected } = useGetUserSelectedQuery()
 
   const selectedCourse = usercourses?.find(
     (course) =>
       course && course.id === userselected?.isSelectedAlphabetCourse_id,
   )
-  // const userSelectedCourse = () => {}
+
   const [isopen, SetOpen] = useState(false)
   const handlMouseEnter = (event: React.MouseEvent) => {
     if (event.type === "mouseenter") {

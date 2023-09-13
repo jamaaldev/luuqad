@@ -4,7 +4,17 @@ import { CoursesTypeValid } from "@/validations/CoursesIsValid"
 import { getServerSession } from "next-auth"
 
 import { NextRequest, NextResponse } from "next/server"
+export type ResponseData = {
+  data: {
+    message?: string
+    error?: string
+    status?: number
+  }
 
+  message?: string
+  error?: string
+  status?: number
+}
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(options)
@@ -37,29 +47,23 @@ export async function POST(req: NextRequest) {
 
     if (UserCourseExist) {
       // You might want to return a proper response in case of an error
-      return NextResponse.json(
-        {
-          error: "Sorry, the Course already exist.",
-        },
-        { status: 409 },
-      )
+      return NextResponse.json({
+        message: "Already Enrolled",
+        status: 409,
+      })
     }
     await prisma.userCourses.create({
       data: newAlphabetCourse,
     })
-    return NextResponse.json(
-      {
-        message: "Successfully added newCourse",
-      },
-      { status: 200 },
-    )
+    return NextResponse.json({
+      message: "Successfully Enrolled",
+      status: 200,
+    })
   } catch (error) {
     // You might want to return a proper response in case of an error
-    return NextResponse.json(
-      {
-        error: "Sorry, something went wrong.",
-      },
-      { status: 500 },
-    )
+    return NextResponse.json({
+      error: "Sorry, something went wrong.",
+      status: 500,
+    })
   }
 }
